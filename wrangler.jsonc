@@ -1,0 +1,9 @@
+// Configuración de Cloudflare: publica la carpeta public/ como sitio estático en el Worker "reality-club".
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "reality-club",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./public"
+  }
+}
