@@ -231,59 +231,87 @@
     startStage();
   }
 
-  /* ---------- Cinta de película con desplazamiento automático ---------- */
-  /* La cinta se mueve sola hacia la izquierda, despacio.
-     PC: se detiene mientras el mouse está encima.
-     Celular: se puede arrastrar con el dedo; al soltar (y terminar la inercia) sigue moviéndose.
-     El contenido de la cinta está duplicado, así que al llegar a la mitad salta al inicio sin que se note. */
+  /* ---------- Cinta de película con desplazamiento automático ----------
+     - Se mueve sola hacia la izquierda, despacio, en bucle sin cortes.
+     - PC: se detiene mientras el mouse está encima y sigue al quitarlo.
+     - Celular: se puede arrastrar con el dedo; al soltar (y terminar la inercia) sigue desde ahí.
+     Cómo funciona:
+     - El movimiento automático usa solo transform (suave en cualquier pantalla y escala de Windows).
+       La posición de scroll solo cambia cuando la persona arrastra.
+     - Los cuadros se repiten las veces necesarias para llenar pantallas anchas,
+       así la cinta nunca llega al final ni se queda "temblando". */
   var reel = document.getElementById('reel');
-  if (reel) {
+  var strip = reel && reel.querySelector('.strip');
+  if (reel && strip) {
     var SPEED = 22;            // píxeles por segundo
     var RESUME_AFTER = 700;    // ms sin tocar/desplazar antes de reanudar
-    var strip = reel.querySelector('.strip');
+    var originals = Array.prototype.filter.call(strip.children, function (li) { return !li.hasAttribute('aria-hidden'); });
     var now = function () { return window.performance && performance.now ? performance.now() : Date.now(); };
     var hover = false, touching = false, lastUser = -1e9, visible = true;
-    var pos = 0, last = null, lastSet = -1;
+    var auto = false, offset = 0, last = null, lastSet = -1;
+    var period = 0, pad = 0;
+
+    // Ancho de una vuelta completa (los cuadros originales con sus márgenes) y margen izquierdo del carril.
+    var measure = function () {
+      var first = originals[0];
+      var next = first && strip.children[originals.length];
+      period = next ? next.offsetLeft - first.offsetLeft : strip.scrollWidth / 2;
+      pad = parseFloat(getComputedStyle(reel).paddingLeft) || 0;
+      // Repite los cuadros hasta cubrir: una vuelta + el ancho visible + un cuadro de sobra.
+      var guard = 0;
+      while (period > 0 && strip.scrollWidth < pad + period * 2 + reel.clientWidth && guard++ < 10) {
+        originals.forEach(function (li) {
+          var c = li.cloneNode(true);
+          c.setAttribute('aria-hidden', 'true');
+          strip.appendChild(c);
+        });
+      }
+    };
+    measure();
+
+    var setScroll = function (x) { reel.scrollLeft = x; lastSet = reel.scrollLeft; };
+
+    // Pasa el desplazamiento automático al scroll real, para que el dedo arrastre desde donde se ve la cinta.
+    var commit = function () {
+      if (!auto) return;
+      var target = reel.scrollLeft + offset;
+      auto = false; offset = 0; last = null;
+      strip.style.transform = 'translate3d(0,0,0)';
+      setScroll(target);
+    };
 
     var userActive = function () { lastUser = now(); };
-    reel.addEventListener('touchstart', function () { touching = true; userActive(); }, { passive: true });
+    reel.addEventListener('touchstart', function () { touching = true; userActive(); commit(); }, { passive: true });
     reel.addEventListener('touchmove', userActive, { passive: true });
     reel.addEventListener('touchend', function () { touching = false; userActive(); }, { passive: true });
     reel.addEventListener('touchcancel', function () { touching = false; userActive(); }, { passive: true });
     reel.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') hover = true; });
     reel.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') hover = false; });
-    reel.addEventListener('wheel', function (e) { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) userActive(); }, { passive: true });
-    // Desplazamientos que no hizo la animación (dedo o inercia) mantienen la pausa.
+    reel.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) { userActive(); commit(); }
+    }, { passive: true });
+    // Cualquier scroll que no hizo este código (dedo, inercia, teclado) cuenta como acción de la persona.
     reel.addEventListener('scroll', function () {
       if (Math.abs(reel.scrollLeft - lastSet) > 1) userActive();
     }, { passive: true });
 
+    window.addEventListener('resize', function () { commit(); measure(); });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; }).observe(reel);
     }
 
-    var setScroll = function (x) { reel.scrollLeft = x; lastSet = reel.scrollLeft; };
-
     var tick = function (t) {
-      var half = strip ? strip.scrollWidth / 2 : 0;
-      var paused = hover || touching || (now() - lastUser < RESUME_AFTER);
-      if (half > 0 && visible && !paused) {
-        if (last === null) pos = reel.scrollLeft;      // reanuda desde donde lo dejó el usuario
-        else pos += Math.min(t - last, 50) * SPEED / 1000;
-        if (pos >= half) pos -= half;
-        if (pos < 0) pos += half;
-        var whole = Math.floor(pos);
-        if (whole !== Math.round(reel.scrollLeft)) setScroll(whole);
-        // La fracción de píxel se aplica con transform para que el movimiento lento sea suave.
-        strip.style.transform = 'translate3d(' + (-(pos - whole)).toFixed(2) + 'px,0,0)';
+      var userBusy = touching || (now() - lastUser < RESUME_AFTER);
+      if (userBusy) commit();
+      if (period > 0 && visible && !hover && !userBusy) {
+        if (!auto) { auto = true; offset = 0; last = null; }
+        if (last !== null) offset += Math.min(t - last, 50) * SPEED / 1000;
         last = t;
+        // Una vuelta después, el contenido es idéntico: se resta una vuelta sin que se note.
+        if (reel.scrollLeft + offset >= pad + period) offset -= period;
+        strip.style.transform = 'translate3d(' + (-offset).toFixed(2) + 'px,0,0)';
       } else {
-        if (last !== null) { last = null; strip.style.transform = 'translate3d(0,0,0)'; }
-        // Si el usuario arrastró fuera del tramo duplicado, lo devuelve al equivalente sin que se note.
-        if (half > 0 && !touching && now() - lastUser > 300) {
-          if (reel.scrollLeft >= half) setScroll(reel.scrollLeft - half);
-          else if (reel.scrollLeft < 1) setScroll(reel.scrollLeft + half);
-        }
+        last = null;   // en pausa (mouse encima): la cinta se queda quieta donde está
       }
       requestAnimationFrame(tick);
     };
