@@ -426,3 +426,19 @@ input[type=range].ba{pointer-events:none}
 .ag-video-m{display:none}
 /* Celular: video vertical en toda la sección y sin el botón */
 @media (max-width:899px){.ag-video-d{display:none}.ag-video-m{display:block;object-position:50% 50%}.ag-shade{background:linear-gradient(180deg,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.62) 50%,rgba(0,0,0,0.78) 100%)}.ag-sec .agent-flow-head .btn{display:none !important}}
+
+/* Para quién es y para quién no: fondo oscuro con un ✓ y una ✕ gigantes */
+.para-dark{position:relative;overflow:hidden;background:#020B0C;color:#FFFFFF}
+.para-dark .wrap{position:relative;z-index:1}
+.para-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.para-glow{position:absolute;left:-10%;top:10%;width:70%;height:90%;background:radial-gradient(closest-side,rgba(37,213,233,0.16),rgba(37,213,233,0))}
+.para-sym{position:absolute;width:min(680px,52vw);height:auto}
+.para-yes{left:-9%;top:-4%;opacity:0.3;filter:drop-shadow(0 0 18px rgba(37,213,233,0.55));animation:paraFloat 14s ease-in-out infinite alternate}
+.para-no{right:-9%;top:2%;opacity:0.1;animation:paraFloat 16s ease-in-out -5s infinite alternate}
+@keyframes paraFloat{from{transform:translateY(-12px) rotate(-2deg)}to{transform:translateY(12px) rotate(2deg)}}
+.para-card{backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.para-card-yes{background:rgba(5,40,44,0.6) !important;border-color:#25D5E9 !important;box-shadow:0 0 40px rgba(37,213,233,0.12)}
+.para-card-no{background:rgba(255,255,255,0.04) !important;border-color:rgba(255,255,255,0.18) !important}
+.para-card-no .h3{color:rgba(255,255,255,0.85)}
+.para-dark .list li{color:#FFFFFF}
+@media (max-width:899px){.para-glow{left:-30%;top:4%;width:130%;height:55%}.para-sym{width:78vw}.para-yes{left:-14%;top:6%}.para-no{right:-16%;top:auto;bottom:4%}}
