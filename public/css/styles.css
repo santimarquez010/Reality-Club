@@ -309,7 +309,9 @@ input[type=range].ba{pointer-events:none}
 .txt-m{display:none}
 @media (max-width:899px){.txt-d{display:none}.txt-m{display:inline}}
 @media (max-width:899px){.hero-vids{padding-bottom:28px !important}}
-@media (max-width:899px){.gar-sec{padding-bottom:24px !important}.trust-sec{background:linear-gradient(180deg,#FFFFFF 0px,#8FB5B8 22px,#1E4F54 48px,#041E21 72px,#041E21 100%) !important}.trust-wrap{padding-top:84px !important}}
+/* Garantía: degradado oscuro -> blanco arriba, blanca abajo */
+.gar-sec{background:linear-gradient(180deg,rgba(4,30,33,1) 0%,rgba(4,30,33,0.74) 19%,rgba(4,30,33,0.54) 34%,rgba(4,30,33,0.38) 47%,rgba(4,30,33,0.28) 56.5%,rgba(4,30,33,0.19) 65%,rgba(4,30,33,0.13) 73%,rgba(4,30,33,0.075) 80%,rgba(4,30,33,0.04) 86%,rgba(4,30,33,0.02) 91%,rgba(4,30,33,0.008) 95%,rgba(4,30,33,0) 100%) top/100% 420px no-repeat,#FFFFFF;padding-top:240px}
+@media (max-width:899px){.gar-sec{background-size:100% 240px;padding-top:150px !important;padding-bottom:64px !important}.trust-wrap{padding-top:18px !important;padding-bottom:18px !important}}
 @media (max-width:899px){.stage-vid{object-fit:contain !important;object-position:50% 12% !important}}
 .scv{display:none}
 @media (max-width:899px){
@@ -352,3 +354,75 @@ input[type=range].ba{pointer-events:none}
 .dc-if{display:contents}
 .dc-if[hidden]{display:none !important}
 
+
+/* Agente de Guiones: título a la izquierda, línea de pasos a la derecha */
+.agent-flow{display:grid;grid-template-columns:minmax(0,0.95fr) minmax(0,1.05fr);gap:56px 72px;align-items:center}
+.agent-flow-head{display:flex;flex-direction:column;gap:18px}
+.agent-flow-quote{margin:6px 0 0;font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(18px,1.8vw,22px);line-height:1.35}
+.flow{position:relative;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:34px}
+.flow li:not(:last-child)::before{content:"";position:absolute;left:23px;top:48px;bottom:-34px;width:2px;background:linear-gradient(180deg,rgba(37,213,233,0.35),#25D5E9);box-shadow:0 0 14px rgba(37,213,233,0.45)}
+.flow li{position:relative;display:grid;grid-template-columns:48px minmax(0,1fr);gap:22px;align-items:start}
+.flow-node{position:relative;z-index:1;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#105961;border:1.5px solid #25D5E9;color:#25D5E9;font-family:Montserrat,sans-serif;font-weight:800;font-size:18px}
+.flow-node{transition:background .35s ease,color .35s ease,box-shadow .35s ease}
+.flow li.is-active .flow-node{background:#25D5E9;color:#0A3A3F;box-shadow:0 0 0 6px rgba(37,213,233,0.15),0 0 30px rgba(37,213,233,0.55)}
+@media (hover:hover){.flow li:hover .flow-node{background:#25D5E9;color:#0A3A3F;box-shadow:0 0 0 6px rgba(37,213,233,0.15),0 0 30px rgba(37,213,233,0.55)}}
+.flow-title{margin:10px 0 6px;font-family:Montserrat,sans-serif;font-weight:800;font-size:clamp(19px,1.7vw,22px);line-height:1.2}
+.flow-text{margin:0;font-size:16px;line-height:1.6;color:rgba(255,255,255,0.8)}
+@media (max-width:899px){.agent-flow{grid-template-columns:1fr;gap:44px}.agent-flow-head .btn{align-self:stretch !important}.flow{gap:28px}.flow li:not(:last-child)::before{bottom:-28px}}
+
+/* Cinta: arrastrable con el mouse */
+.reel-scroll{-webkit-user-select:none;user-select:none}
+.reel-scroll.is-dragging{cursor:grabbing}
+
+/* Barra de confianza: compacta y blanca */
+.trust-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 20px;justify-items:center}
+.trust-item{display:flex;align-items:center;gap:10px}
+.trust-icon{width:34px;height:34px;border-radius:10px}
+.trust-icon svg{width:18px;height:18px}
+.trust-label{font-weight:700;font-size:15px;white-space:nowrap}
+@media (max-width:899px){.trust-grid{grid-template-columns:repeat(2,minmax(0,1fr));justify-items:start}.trust-label{font-size:14px}}
+
+/* Club de Socios: video de fondo con velo oscuro para que el texto se lea */
+.socios-video{position:relative;overflow:hidden;background:#000000}
+.sv-bg{position:absolute;inset:0;z-index:0}
+.sv-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.sv-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.55) 45%,rgba(0,0,0,0.15) 100%),linear-gradient(180deg,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 65%,rgba(0,0,0,0.85) 100%)}
+.socios-video .wrap{position:relative;z-index:1}
+.socios-video .card{background:rgba(0,0,0,0.45);border-color:rgba(255,255,255,0.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+/* Celular: el video ocupa la parte de arriba (plano más amplio) y se funde en negro hacia abajo */
+@media (max-width:899px){.sv-bg{bottom:auto;height:var(--sv-h,700px);-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 62%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,#000 62%,transparent 100%)}.sv-video{object-position:55% 35%}.sv-shade{background:linear-gradient(180deg,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.5) 45%,rgba(0,0,0,0.6) 100%)}}
+
+
+/* Club de Socios en celular: video dentro de cada paso y fondo de dinero animado en toda la sección */
+.step-media{display:none}
+@keyframes moneyDrift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-260px,-260px,0)}}
+@media (max-width:899px){
+.socios-video{background:#000000}
+.socios-video::before{content:"";position:absolute;top:0;left:0;width:calc(100% + 520px);height:calc(100% + 520px);z-index:0;pointer-events:none;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22260%22%20height%3D%22260%22%20viewBox%3D%220%200%20260%20260%22%3E%3Ctext%20x%3D%2230%22%20y%3D%2248%22%20font-family%3D%22Montserrat%2CArial%2Csans-serif%22%20font-weight%3D%22900%22%20font-size%3D%2234%22%20fill%3D%22%2325D5E9%22%20fill-opacity%3D%220.55%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%28-12%2030%2048%29%22%3E%24%3C%2Ftext%3E%3Cg%20transform%3D%22rotate%2814%20156%2037%29%22%20stroke%3D%22%23FFFFFF%22%20stroke-opacity%3D%220.3%22%20fill%3D%22none%22%20stroke-width%3D%221.6%22%3E%3Crect%20x%3D%22120%22%20y%3D%2218%22%20width%3D%2272%22%20height%3D%2238%22%20rx%3D%224%22%2F%3E%3Crect%20x%3D%22125%22%20y%3D%2223%22%20width%3D%2262%22%20height%3D%2228%22%20rx%3D%222%22%2F%3E%3Ccircle%20cx%3D%22156%22%20cy%3D%2237%22%20r%3D%229%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22156%22%20y%3D%2242%22%20font-family%3D%22Montserrat%2CArial%2Csans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2213%22%20fill%3D%22%23FFFFFF%22%20fill-opacity%3D%220.3%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%2814%20156%2037%29%22%3E%24%3C%2Ftext%3E%3Cg%20stroke%3D%22%2325D5E9%22%20stroke-opacity%3D%220.58%22%20fill%3D%22none%22%20stroke-width%3D%221.6%22%3E%3Ccircle%20cx%3D%22222%22%20cy%3D%2274%22%20r%3D%2216%22%2F%3E%3Ccircle%20cx%3D%22222%22%20cy%3D%2274%22%20r%3D%2212%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22222%22%20y%3D%2280.72%22%20font-family%3D%22Montserrat%2CArial%2Csans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2218.4%22%20fill%3D%22%2325D5E9%22%20fill-opacity%3D%220.58%22%20text-anchor%3D%22middle%22%3E%24%3C%2Ftext%3E%3Ctext%20x%3D%22150%22%20y%3D%22118%22%20font-family%3D%22Montserrat%2CArial%2Csans-serif%22%20font-weight%3D%22900%22%20font-size%3D%2222%22%20fill%3D%22%23FFFFFF%22%20fill-opacity%3D%220.28%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%2810%20150%20118%29%22%3E%24%3C%2Ftext%3E%3Cg%20stroke%3D%22%23FFFFFF%22%20stroke-opacity%3D%220.32%22%20fill%3D%22none%22%20stroke-width%3D%221.6%22%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%22140%22%20r%3D%2212%22%2F%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%22140%22%20r%3D%228%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%2248%22%20y%3D%22145.04%22%20font-family%3D%22Montserrat%2CArial%2Csans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2213.799999999999999%22%20fill%3D%22%23FFFFFF%22%20fill-opacity%3D%220.32%22%20text-anchor%3D%22middle%22%3E%24%3C%2Ftext%3E%3Cg%20transform%3D%22rotate%28-18%20186%20189%29%22%20stroke%3D%22%2325D5E9%22%20stroke-opacity%3D%220.5%22%20fill%3D%22none%22%20stroke-width%3D%221.6%22%3E%3Crect%20x%3D%22150%22%20y%3D%22170%22%20width%3D%2272%22%20height%3D%2238%22%20rx%3D%224%22%2F%3E%3Crect%20x%3D%22155%22%20y%3D%22175%22%20width%3D%2262%22%20height%3D%2228%22%20rx%3D%222%22%2F%3E%3Ccircle%20cx%3D%22186%22%20cy%3D%22189%22%20r%3D%229%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22186%22%20y%3D%22194%22%20font-family%3D%22Montserrat%2CArial%2Csans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2213%22%20fill%3D%22%2325D5E9%22%20fill-opacity%3D%220.5%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%28-18%20186%20189%29%22%3E%24%3C%2Ftext%3E%3Ctext%20x%3D%2292%22%20y%3D%22210%22%20font-family%3D%22Montserrat%2CArial%2Csans-serif%22%20font-weight%3D%22900%22%20font-size%3D%2240%22%20fill%3D%22%2325D5E9%22%20fill-opacity%3D%220.45%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%288%2092%20210%29%22%3E%24%3C%2Ftext%3E%3Ctext%20x%3D%22232%22%20y%3D%22236%22%20font-family%3D%22Montserrat%2CArial%2Csans-serif%22%20font-weight%3D%22900%22%20font-size%3D%2220%22%20fill%3D%22%23FFFFFF%22%20fill-opacity%3D%220.28%22%20text-anchor%3D%22middle%22%20transform%3D%22rotate%28-8%20232%20236%29%22%3E%24%3C%2Ftext%3E%3Cg%20stroke%3D%22%2325D5E9%22%20stroke-opacity%3D%220.5%22%20fill%3D%22none%22%20stroke-width%3D%221.6%22%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22236%22%20r%3D%2210%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22236%22%20r%3D%226%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%2216%22%20y%3D%22240.2%22%20font-family%3D%22Montserrat%2CArial%2Csans-serif%22%20font-weight%3D%22800%22%20font-size%3D%2211.5%22%20fill%3D%22%2325D5E9%22%20fill-opacity%3D%220.5%22%20text-anchor%3D%22middle%22%3E%24%3C%2Ftext%3E%3C%2Fsvg%3E") 0 0/260px 260px repeat;animation:moneyDrift 45s linear infinite;will-change:transform}
+.socios-video::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(80% 45% at 50% 22%,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.3) 65%,rgba(0,0,0,0) 100%)}
+.socios-video .sv-bg{display:none}
+.step-media{display:block;position:relative;margin:-28px -28px 4px;aspect-ratio:16/10;overflow:hidden;border-radius:22px 22px 0 0;background:#000}
+.step-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.socios-video .card{background:rgba(0,0,0,0.78)}
+}
+
+/* Club de Socios en celular: el video llena toda la tarjeta y el texto va encima, abajo */
+@media (max-width:899px){
+.socios-video .card{position:relative;overflow:hidden;min-height:440px;justify-content:flex-end;background:#000}
+.socios-video .step-media{position:absolute;inset:0;margin:0;aspect-ratio:auto;border-radius:0;z-index:0}
+.socios-video .step-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 35%,rgba(0,0,0,0.65) 62%,rgba(0,0,0,0.94) 100%)}
+.socios-video .card > :not(.step-media){position:relative;z-index:1}
+.socios-video .card p{color:rgba(255,255,255,0.9)}
+}
+
+/* Agente de Guiones: video de fondo (robot escribiendo) con velo negro */
+.ag-sec{position:relative;overflow:hidden;background:#000000}
+.ag-sec .wrap{position:relative;z-index:1}
+.ag-bg{position:absolute;inset:0;z-index:0}
+.ag-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;opacity:0.5}
+.ag-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.7) 45%,rgba(0,0,0,0.7) 100%),linear-gradient(180deg,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 65%,rgba(0,0,0,0.85) 100%)}
+.ag-sec .flow-node{background:#000000}
+.ag-sec .lead,.ag-sec .flow-text{color:#FFFFFF}
+.ag-video-m{display:none}
+/* Celular: video vertical en toda la sección y sin el botón */
+@media (max-width:899px){.ag-video-d{display:none}.ag-video-m{display:block;object-position:50% 50%}.ag-shade{background:linear-gradient(180deg,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.62) 50%,rgba(0,0,0,0.78) 100%)}.ag-sec .agent-flow-head .btn{display:none !important}}

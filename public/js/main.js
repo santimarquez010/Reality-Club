@@ -49,9 +49,10 @@
     });
   });
 
-  /* ---------- Barra flotante: aparece después del hero, se oculta en la oferta ---------- */
+  /* ---------- Barra flotante: aparece después del hero, se oculta en la oferta y muestra el precio después de ella ---------- */
   var floatCta = document.getElementById('float-cta');
   var offer = document.getElementById('oferta');
+  var floatLink = floatCta && floatCta.querySelector('a');
   if (floatCta) {
     onScrollRaf(function () {
       var heroH = Math.min(960, Math.max(720, window.innerWidth * 0.64));
@@ -61,6 +62,10 @@
         if (r.top < window.innerHeight - 40 && r.bottom > 80) on = false;
       }
       if (floatCta.hidden === on) floatCta.hidden = !on;
+      // Sin precio hasta pasar la oferta; después de la oferta, con precio.
+      var passed = offer ? offer.getBoundingClientRect().bottom <= 80 : false;
+      var label = passed ? "Quiero entrar al club · US$47" : "Quiero entrar al club";
+      if (floatLink && floatLink.textContent !== label) floatLink.textContent = label;
     });
   }
 
@@ -94,22 +99,6 @@
       window.addEventListener('touchstart', stop, { passive: true });
       window.addEventListener('wheel', stop, { passive: true });
     }, 50);
-  });
-
-  /* ---------- Antes y después (Grabando como siempre / Con Reality Club) en móvil ---------- */
-  var vsSec = document.getElementById('vs-sec');
-  var vsList = document.getElementById('vs-list');
-  document.querySelectorAll('[data-vs]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var tab = btn.getAttribute('data-vs');
-      if (vsSec) vsSec.className = vsSec.className.replace(/vs-sec-\w+/, 'vs-sec-' + tab);
-      if (vsList) vsList.className = vsList.className.replace(/vs-tab-\w+/, 'vs-tab-' + tab);
-      document.querySelectorAll('[data-vs]').forEach(function (b) {
-        var on = b.getAttribute('data-vs') === tab;
-        b.className = on ? (tab === 'old' ? 'on-old' : 'on') : '';
-        b.setAttribute('aria-pressed', on ? 'true' : 'false');
-      });
-    });
   });
 
   /* ---------- Comparador deslizable ---------- */
@@ -159,6 +148,35 @@
       down = null; dragging = false;
     });
     box.addEventListener('pointercancel', function () { down = null; dragging = false; });
+    // Celular: la primera vez que se ve el comparador, la línea se mueve sola (centro → izquierda → derecha → centro)
+    // para mostrar que se puede arrastrar. Solo una vez; si la persona lo toca, la animación se detiene.
+    var hintDone = false, hintRaf = null;
+    var stopHint = function () { hintDone = true; if (hintRaf) { cancelAnimationFrame(hintRaf); hintRaf = null; } };
+    box.addEventListener('pointerdown', stopHint);
+    var runHint = function () {
+      if (hintDone) return;
+      hintDone = true;
+      var keys = [50, 32, 68, 50], seg = 650, start = null;
+      var ease = function (t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; };
+      var frame = function (t) {
+        if (start === null) start = t;
+        var e = t - start, i = Math.floor(e / seg);
+        if (i >= keys.length - 1) { baRange.value = 50; slide(); hintRaf = null; return; }
+        var p = ease((e - i * seg) / seg);
+        baRange.value = keys[i] + (keys[i + 1] - keys[i]) * p;
+        slide();
+        hintRaf = requestAnimationFrame(frame);
+      };
+      hintRaf = requestAnimationFrame(frame);
+    };
+    if ('IntersectionObserver' in window) {
+      var hintIO = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting || !mqMobile.matches) return;
+        hintIO.disconnect();
+        setTimeout(runHint, 250);
+      }, { threshold: 0.6 });
+      hintIO.observe(box);
+    }
   }
 
   /* ---------- Código de tiempo de la cámara ---------- */
@@ -185,69 +203,27 @@
     });
   }
   activeOnScroll(document.getElementById('real-grid'), '.card');
-  activeOnScroll(document.getElementById('stage-list'), '.stage-card');
-
-  /* ---------- Ejemplo paso a paso: videos de cada etapa ---------- */
-  var stageSec = document.getElementById('stage-sec');
-  var stageVids = Array.prototype.slice.call(document.querySelectorAll('video[data-stage-vid]'));
-  var scvs = Array.prototype.slice.call(document.querySelectorAll('video[data-scv]'));
-  var stageCards = Array.prototype.slice.call(document.querySelectorAll('#stage-list .stage-card'));
-  var stage = 0, stagePlaying = false;
-
-  stageVids.concat(scvs).forEach(function (v) { v.muted = true; });
-
-  function markStage() {
-    stageCards.forEach(function (c, i) { c.classList.toggle('stage-on', stagePlaying && i === stage); });
-    stageVids.forEach(function (v, i) { v.style.opacity = i === stage ? '0.6' : '0'; });
-  }
-  stageVids.forEach(function (v, i) {
-    v.addEventListener('ended', function () {
-      stage = (i + 1) % stageVids.length;
-      markStage();
-      var nx = stageVids[stage];
-      if (nx) { nx.currentTime = 0; safePlay(nx); }
-      var after = stageVids[(stage + 1) % stageVids.length];
-      if (after) after.preload = 'auto';
-    });
-  });
-  function startStage() {
-    if (mqMobile.matches) {
-      scvs.forEach(function (v) { v.preload = 'auto'; safePlay(v); });
-    } else {
-      safePlay(stageVids[stage]);
-      var nx = stageVids[(stage + 1) % stageVids.length];
-      if (nx) nx.preload = 'auto';
-    }
-    if (!stagePlaying) { stagePlaying = true; markStage(); }
-  }
-  function stopStage() {
-    stageVids.concat(scvs).forEach(function (v) { v.pause(); });
-  }
-  if (stageSec && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) startStage(); else stopStage(); });
-    }, { rootMargin: '700px 0px 700px 0px' }).observe(stageSec);
-  } else if (stageSec) {
-    startStage();
-  }
+  // Línea de pasos del Agente de Guiones: en celular se rellena el paso que cruza el centro de la pantalla.
+  activeOnScroll(document.querySelector('.flow'), 'li');
 
   /* ---------- Cinta de película con desplazamiento automático ----------
-     - Se mueve sola hacia la izquierda, despacio, en bucle sin cortes.
-     - PC: se detiene mientras el mouse está encima y sigue al quitarlo.
-     - Celular: se puede arrastrar con el dedo; al soltar (y terminar la inercia) sigue desde ahí.
+     - Se mueve sola hacia la izquierda en bucle sin cortes (más rápido en PC que en celular).
+     - PC: se detiene con el mouse encima y se puede arrastrar con el mouse.
+     - Celular: se arrastra con el dedo; al soltar (y terminar la inercia) sigue desde ahí.
      Cómo funciona:
      - El movimiento automático usa solo transform (suave en cualquier pantalla y escala de Windows).
        La posición de scroll solo cambia cuando la persona arrastra.
-     - Los cuadros se repiten las veces necesarias para llenar pantallas anchas,
-       así la cinta nunca llega al final ni se queda "temblando". */
+     - Los cuadros se repiten para llenar pantallas anchas y la posición se mantiene siempre
+       dentro de una "vuelta" del medio, así se puede arrastrar sin fin hacia ambos lados. */
   var reel = document.getElementById('reel');
   var strip = reel && reel.querySelector('.strip');
   if (reel && strip) {
-    var SPEED = 22;            // píxeles por segundo
-    var RESUME_AFTER = 700;    // ms sin tocar/desplazar antes de reanudar
+    var SPEED_PC = 45;         // píxeles por segundo en PC
+    var SPEED_PHONE = 22;      // píxeles por segundo en celular
+    var RESUME_AFTER = 700;    // ms sin tocar/arrastrar antes de reanudar
     var originals = Array.prototype.filter.call(strip.children, function (li) { return !li.hasAttribute('aria-hidden'); });
     var now = function () { return window.performance && performance.now ? performance.now() : Date.now(); };
-    var hover = false, touching = false, lastUser = -1e9, visible = true;
+    var hover = false, touching = false, drag = null, lastUser = -1e9, visible = true;
     var auto = false, offset = 0, last = null, lastSet = -1;
     var period = 0, pad = 0;
 
@@ -257,7 +233,6 @@
       var next = first && strip.children[originals.length];
       period = next ? next.offsetLeft - first.offsetLeft : strip.scrollWidth / 2;
       pad = parseFloat(getComputedStyle(reel).paddingLeft) || 0;
-      // Repite los cuadros hasta cubrir: una vuelta + el ancho visible + un cuadro de sobra.
       var guard = 0;
       while (period > 0 && strip.scrollWidth < pad + period * 2 + reel.clientWidth && guard++ < 10) {
         originals.forEach(function (li) {
@@ -267,11 +242,21 @@
         });
       }
     };
-    measure();
 
+    // Lleva una posición a la vuelta del medio; el contenido es idéntico, así que el salto no se ve.
+    var lo = function () { return pad + period * 0.5; };
+    var norm = function (x) {
+      if (period <= 0) return x;
+      while (x < lo()) x += period;
+      while (x >= lo() + period) x -= period;
+      return x;
+    };
     var setScroll = function (x) { reel.scrollLeft = x; lastSet = reel.scrollLeft; };
 
-    // Pasa el desplazamiento automático al scroll real, para que el dedo arrastre desde donde se ve la cinta.
+    measure();
+    setScroll(norm(period));
+
+    // Pasa el desplazamiento automático al scroll real, para arrastrar desde donde se ve la cinta.
     var commit = function () {
       if (!auto) return;
       var target = reel.scrollLeft + offset;
@@ -281,12 +266,43 @@
     };
 
     var userActive = function () { lastUser = now(); };
+
+    // Dedo (celular): scroll nativo con inercia.
     reel.addEventListener('touchstart', function () { touching = true; userActive(); commit(); }, { passive: true });
     reel.addEventListener('touchmove', userActive, { passive: true });
     reel.addEventListener('touchend', function () { touching = false; userActive(); }, { passive: true });
     reel.addEventListener('touchcancel', function () { touching = false; userActive(); }, { passive: true });
+
+    // Mouse (PC): se detiene encima y se arrastra con clic sostenido.
     reel.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') hover = true; });
     reel.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') hover = false; });
+    reel.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      e.preventDefault();
+      commit();
+      drag = { x: e.clientX, s: reel.scrollLeft, id: e.pointerId };
+      try { reel.setPointerCapture(e.pointerId); } catch (err) {}
+      reel.classList.add('is-dragging');
+      userActive();
+    });
+    reel.addEventListener('pointermove', function (e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      var target = drag.s - (e.clientX - drag.x);
+      var n = norm(target);
+      drag.s += n - target;   // si saltó una vuelta, el punto de partida salta igual
+      setScroll(n);
+      userActive();
+    });
+    var endDrag = function () {
+      if (!drag) return;
+      drag = null;
+      reel.classList.remove('is-dragging');
+      userActive();
+    };
+    reel.addEventListener('pointerup', endDrag);
+    reel.addEventListener('pointercancel', endDrag);
+    reel.addEventListener('lostpointercapture', endDrag);
+
     reel.addEventListener('wheel', function (e) {
       if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) { userActive(); commit(); }
     }, { passive: true });
@@ -295,23 +311,25 @@
       if (Math.abs(reel.scrollLeft - lastSet) > 1) userActive();
     }, { passive: true });
 
-    window.addEventListener('resize', function () { commit(); measure(); });
+    window.addEventListener('resize', function () { commit(); measure(); setScroll(norm(reel.scrollLeft)); });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; }).observe(reel);
     }
 
     var tick = function (t) {
-      var userBusy = touching || (now() - lastUser < RESUME_AFTER);
+      var userBusy = touching || drag || (now() - lastUser < RESUME_AFTER);
       if (userBusy) commit();
       if (period > 0 && visible && !hover && !userBusy) {
-        if (!auto) { auto = true; offset = 0; last = null; }
-        if (last !== null) offset += Math.min(t - last, 50) * SPEED / 1000;
+        if (!auto) {
+          setScroll(norm(reel.scrollLeft));   // tras un arrastre con el dedo, vuelve a la vuelta del medio
+          auto = true; offset = 0; last = null;
+        }
+        if (last !== null) offset += Math.min(t - last, 50) * (mqMobile.matches ? SPEED_PHONE : SPEED_PC) / 1000;
         last = t;
-        // Una vuelta después, el contenido es idéntico: se resta una vuelta sin que se note.
-        if (reel.scrollLeft + offset >= pad + period) offset -= period;
+        if (reel.scrollLeft + offset >= lo() + period) offset -= period;
         strip.style.transform = 'translate3d(' + (-offset).toFixed(2) + 'px,0,0)';
       } else {
-        last = null;   // en pausa (mouse encima): la cinta se queda quieta donde está
+        last = null;   // en pausa: la cinta se queda quieta donde está
       }
       requestAnimationFrame(tick);
     };
@@ -340,6 +358,24 @@
     } else {
       runCounters();
     }
+  }
+
+  /* ---------- Videos de fondo (Club de Socios y Agente de Guiones) ----------
+     PC: video de fondo de la sección. Celular: un video dentro de cada paso.
+     Siempre en silencio; cada uno se reproduce solo mientras está visible (los ocultos ni se descargan). */
+  var socioVids = Array.prototype.slice.call(document.querySelectorAll(".sv-video, .step-video, .ag-video"));
+  if (socioVids.length && "IntersectionObserver" in window) {
+    var socioIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var v = en.target;
+        if (en.isIntersecting && v.offsetParent !== null) { v.preload = "auto"; safePlay(v); } else { v.pause(); }
+      });
+    }, { rootMargin: "200px 0px 200px 0px" });
+    socioVids.forEach(function (v) { v.muted = true; socioIO.observe(v); });
+    // Al pasar de PC a celular (o al revés), pausa el que queda oculto y vuelve a evaluar.
+    if (mqMobile.addEventListener) mqMobile.addEventListener("change", function () {
+      socioVids.forEach(function (v) { if (v.offsetParent === null) v.pause(); socioIO.unobserve(v); socioIO.observe(v); });
+    });
   }
 
   /* ---------- Reto "¿Cuál es real y cuál es IA?" ---------- */
