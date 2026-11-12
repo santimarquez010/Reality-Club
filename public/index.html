@@ -299,6 +299,19 @@
         <p style="margin: 0; line-height: 1.55; font-size: 16px">El dinero te llega a tu cuenta bancaria en tu moneda local.</p>
       </li>
     </ol>
+    <div class="calc" id="calc">
+      <div class="calc-head">
+        <h3 class="h3">Calcula cuánto puedes ganar</h3>
+        <p class="calc-sub">Cada venta te deja aprox. US$23.</p>
+      </div>
+      <label class="calc-label" for="calc-range">Ventas al día: <strong id="calc-sales">3</strong></label>
+      <input class="calc-range" type="range" min="1" max="30" step="1" value="3" id="calc-range">
+      <div class="calc-scale" aria-hidden="true"><span>1</span><span>15</span><span>30</span></div>
+      <div class="calc-out" aria-live="polite">
+        <div><span class="calc-k">Al mes</span><span class="calc-v" id="calc-month">US$2.070</span></div>
+        <div><span class="calc-k">Al año</span><span class="calc-v calc-v2" id="calc-year">US$24.840</span></div>
+      </div>
+    </div>
     <p style="margin: 0; font-weight: 700; font-size: 17px">En el módulo Club de Socios te enseñamos todo lo que necesitas para empezar.</p>
   </div>
 </section>

@@ -389,3 +389,25 @@
     });
   }
 })();
+
+/* Club de Socios: calculadora de ingresos (US$23 por venta) */
+(function () {
+  var range = document.getElementById('calc-range');
+  if (!range) return;
+  var PER_SALE = 23;
+  var sales = document.getElementById('calc-sales');
+  var month = document.getElementById('calc-month');
+  var year = document.getElementById('calc-year');
+  var fmt = function (n) { return 'US$' + n.toLocaleString('es-CO'); };
+  function update() {
+    var v = +range.value;
+    var p = (v - range.min) / (range.max - range.min) * 100;
+    range.style.setProperty('--p', p + '%');
+    sales.textContent = v;
+    month.textContent = fmt(v * PER_SALE * 30);
+    year.textContent = fmt(v * PER_SALE * 30 * 12);
+    range.setAttribute('aria-valuetext', v + ' ventas al día, ' + fmt(v * PER_SALE * 30) + ' al mes');
+  }
+  range.addEventListener('input', update);
+  update();
+})();
