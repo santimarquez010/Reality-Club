@@ -1,0 +1,30 @@
+# Reality Club · sitio web
+
+Sitio HTML estático (sin build) en `public/`. Se publica en Cloudflare Workers (static assets, Worker `reality-club`, ver `wrangler.jsonc`): cada push a `main` despliega solo en realityclub.co. Un archivo `public/x.html` abre en `realityclub.co/x`.
+
+## Páginas
+
+| Archivo | Dirección | Nota |
+|---|---|---|
+| `index.html` | `/` | Página de ventas principal |
+| `video.html` | `/video` | VSL principal (el video y su headline vienen del código de vturb) |
+| `pv-socio.html` | `/pv-socio` | Copia de `index.html` para los socios. **Generada, no editar** |
+| `video-socio.html` | `/video-socio` | Copia de `video.html` para los socios. **Generada, no editar** |
+| `bibliotecadeprompts.html` | `/bibliotecadeprompts` | Para compradores, `noindex`, sin enlaces desde la página de ventas |
+| `terminos.html`, `privacidad.html` | `/terminos`, `/privacidad` | Páginas legales |
+
+## Páginas de socios (reglas obligatorias)
+
+- `pv-socio.html` y `video-socio.html` se generan con `node scripts/sync-socios.js`. Nunca se editan a mano.
+- **Después de cualquier cambio en `index.html` o `video.html`, corre `node scripts/sync-socios.js` antes de hacer commit**, y sube las copias en el mismo commit.
+- El script copia el original exacto y en la copia: agrega `<meta name="robots" content="noindex">`, agrega `<script src="https://socios-realityclub.vercel.app/s.js" defer></script>` justo antes de `</head>`, y quita el píxel de Meta de Reality Club (`fbq(...)`, `fbevents.js`, `connect.facebook.net`, `facebook.com/tr`). En las páginas de socios solo va el píxel del socio, que lo prende `s.js`.
+- `index.html` y `video.html` nunca llevan el script de socios.
+- Los archivos van en la raíz de `public/` (no en carpetas `pv-socio/index.html`), para que la dirección no tenga barra al final y carguen las rutas relativas (`assets/`, `css/`, `js/`).
+- No enlazar las páginas de socios desde el menú, el pie de página ni un sitemap.
+- Si algún día el sitio envía `Content-Security-Policy`, permitir `https://socios-realityclub.vercel.app`, `https://connect.facebook.net` y `https://www.facebook.com` en `script-src`, `connect-src` e `img-src`.
+
+## Estilo y textos
+
+- Siempre "socios", nunca "afiliados". Comisión: 50%.
+- Colores: fondo `#041E21`, cian `#25D5E9`, verde de botones `#34E39B`. Letras: Montserrat (títulos) e Inter.
+- Logos para fondo oscuro: `assets/logo-r.png` (la R) y `assets/logo-reality-club.png` (REALITY CLUB). Favicon: `assets/favicon-32.png`, `assets/favicon-512.png`, `assets/apple-touch-icon.png` y `favicon.ico`.
