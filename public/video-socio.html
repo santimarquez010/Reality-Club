@@ -33,7 +33,8 @@ a{color:inherit}
 .page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
 
 /* Ceja */
-.ceja{margin:0;padding:16px 16px;background:linear-gradient(90deg,#1A97A5,#25D5E9 50%,#1A97A5);color:#041E21;text-align:center;font-family:Montserrat,sans-serif;font-weight:800;font-size:clamp(15px,1.9vw,21px);line-height:1.35;box-shadow:0 6px 30px rgba(37,213,233,0.25)}
+.ceja{margin:0;padding:16px 16px;background:linear-gradient(90deg,#1A97A5,#25D5E9 50%,#1A97A5);color:#041E21;text-align:center;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(15px,1.8vw,21px);line-height:1.45;text-wrap:balance;box-shadow:0 6px 30px rgba(37,213,233,0.25)}
+.ceja .at{display:inline-block;margin-right:6px;padding:2px 10px;border-radius:6px;background:#041E21;color:#25D5E9;font-weight:900;letter-spacing:0.04em;text-transform:uppercase}
 
 .main{flex:1;width:100%;max-width:980px;margin:0 auto;padding:clamp(32px,5vw,56px) 16px 56px;display:flex;flex-direction:column;align-items:center;gap:clamp(22px,3vw,32px);text-align:center}
 .iso{height:40px;width:auto;display:block;filter:drop-shadow(0 0 18px rgba(37,213,233,0.45))}
@@ -66,6 +67,9 @@ a{color:inherit}
 .vsl-play{width:64px;height:64px}
 .vsl-play svg{width:24px;height:24px}
 .brand .word{height:14px}
+.ceja{padding:10px 4px;font-size:14px;line-height:1.4;font-weight:500;letter-spacing:-0.012em}
+.ceja .at{margin-right:3px;padding:1px 5px;border-radius:5px;letter-spacing:0.02em}
+.br-m{display:inline}
 }
 </style>
 <meta name="robots" content="noindex">
@@ -74,7 +78,7 @@ a{color:inherit}
 <body>
 <div class="bg" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
 <div class="page">
-  <p class="ceja">Videos con IA que parecen reales, se hacen virales en redes y venden mucho más en anuncios.</p>
+  <p class="ceja"><strong class="at">Atención:</strong> para quien quiere hacer videos con IA<br class="br-m"> que se vuelvan virales y anuncios que vendan más</p>
 
   <main class="main">
     <img class="iso" src="assets/logo-r.png" alt="Reality Club">
