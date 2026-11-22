@@ -53,6 +53,7 @@
   var floatCta = document.getElementById('float-cta');
   var offer = document.getElementById('oferta');
   var floatLink = floatCta && floatCta.querySelector('a');
+  var checkoutLink = document.querySelector('a[data-checkout]');
   if (floatCta) {
     onScrollRaf(function () {
       var heroH = Math.min(960, Math.max(720, window.innerWidth * 0.64));
@@ -66,6 +67,9 @@
       var passed = offer ? offer.getBoundingClientRect().bottom <= 80 : false;
       var label = passed ? "Quiero entrar al club · US$47" : "Quiero entrar al club";
       if (floatLink && floatLink.textContent !== label) floatLink.textContent = label;
+      // Después de la oferta, el botón flotante lleva directo al pago.
+      var href = passed && checkoutLink ? checkoutLink.getAttribute('href') : '#oferta';
+      if (floatLink && floatLink.getAttribute('href') !== href) floatLink.setAttribute('href', href);
     });
   }
 
