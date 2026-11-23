@@ -19,6 +19,7 @@ Sitio HTML estático (sin build) en `public/`. Se publica en Cloudflare Workers 
 - **Después de cualquier cambio en `index.html` o `video.html`, corre `node scripts/sync-socios.js` antes de hacer commit**, y sube las copias en el mismo commit.
 - El script copia el original exacto y en la copia: agrega `<meta name="robots" content="noindex">`, agrega `<script src="https://socios-realityclub.vercel.app/s.js" defer></script>` justo antes de `</head>`, cambia el checkout de Hotmart principal por el de socios, y quita el píxel de Meta de Reality Club (`fbq(...)`, `fbevents.js`, `connect.facebook.net`, `facebook.com/tr`). En las páginas de socios solo va el píxel del socio, que lo prende `s.js`.
 - `index.html` y `video.html` nunca llevan el script de socios.
+- `index.html` y `video.html` llevan, justo antes de `</body>`, el rastreo de ventas `<script src="https://cerebrocentro.vercel.app/rastreo.js" defer></script>` (copia `src`, `sck` y `utm_*` a los botones de Hotmart). Va solo en las páginas originales: el script de sincronización lo quita de las copias de socios.
 - Checkout de Hotmart:
   - Principal (páginas originales): `https://pay.hotmart.com/E108564799D?off=ir3bjgrz&checkoutMode=10`
   - Socios (páginas de socios): `https://pay.hotmart.com/E108564799D?off=gx41m0kn&checkoutMode=10`

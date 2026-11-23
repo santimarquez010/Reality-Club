@@ -4,7 +4,7 @@
 //
 // En las copias: agrega <meta name="robots" content="noindex">, agrega el script de socios
 // justo antes de </head>, cambia el checkout de Hotmart principal por el de socios
-// y quita el píxel de Meta de Reality Club (si lo hay).
+// y quita el píxel de Meta de Reality Club (si lo hay) y el script de rastreo de ventas (cerebrocentro).
 // Todo lo demás queda igual. Nunca edites las copias a mano: edita el original y corre
 //   node scripts/sync-socios.js
 const fs = require('fs');
@@ -42,11 +42,14 @@ for (const [origen, destino] of PAGES) {
   if (html.includes(CHECKOUT_OFF_PRINCIPAL)) fail(destino + ' todavía tiene el checkout principal');
 
   html = quitarPixelMeta(html);
+  // El rastreo de ventas de Reality Club (cerebrocentro) va solo en las páginas originales.
+  html = html.replace(/[ \t]*<script\b[^>]*src="[^"]*cerebrocentro\.vercel\.app[^"]*"[^>]*>\s*<\/script>[ \t]*\r?\n?/gi, '');
   html = html.replace(/[ \t]*<meta\s+name="robots"[^>]*>[ \t]*\r?\n?/gi, '');
   if (!/<\/head>/i.test(html)) fail(origen + ' no tiene </head>');
   html = html.replace(/<\/head>/i, '<meta name="robots" content="noindex">' + nl + SOCIOS_SCRIPT + nl + '</head>');
 
   if (/fbq\s*\(|fbevents\.js|connect\.facebook\.net/i.test(html)) fail(destino + ' todavía tiene restos del píxel de Meta');
+  if (html.includes('cerebrocentro')) fail(destino + ' todavía tiene el script de rastreo');
   fs.writeFileSync(path.join(PUB, destino), html);
   console.log('ok  ' + origen + '  ->  ' + destino);
 }
