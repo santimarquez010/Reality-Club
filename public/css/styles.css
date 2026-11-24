@@ -467,4 +467,4 @@ input[type=range].ba{pointer-events:none}
 @media (max-width:899px){.calc{padding:26px 20px}.calc-out{grid-template-columns:1fr}}
 
 /* Navegación: enlaces centrados en PC */
-@media (min-width:900px){.nav-row{display:grid !important;grid-template-columns:1fr auto 1fr}.nav-row > a{justify-self:start}}
+@media (min-width:900px){.nav-row{display:grid !important;grid-template-columns:1fr auto 1fr}.nav-row > a,.nav-row > .nav-logo{justify-self:start}}
