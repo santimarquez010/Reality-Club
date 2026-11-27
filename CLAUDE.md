@@ -10,6 +10,7 @@ Sitio HTML estático (sin build) en `public/`. Se publica en Cloudflare Workers 
 | `video.html` | `/video` | VSL principal (el video y su headline vienen del código de vturb) |
 | `pv-socio.html` | `/pv-socio` | Copia de `index.html` para los socios. **Generada, no editar** |
 | `video-socio.html` | `/video-socio` | Copia de `video.html` para los socios. **Generada, no editar** |
+| `botonrojo.html` | `/botonrojo` | VSL de El Botón Rojo (colores rojo/blanco del empaque, favicon `assets/botonrojo-*`, sin píxel de Meta por ahora) |
 | `bibliotecadeprompts.html` | `/bibliotecadeprompts` | Para compradores, `noindex`, sin enlaces desde la página de ventas |
 | `terminos.html`, `privacidad.html` | `/terminos`, `/privacidad` | Páginas legales |
 

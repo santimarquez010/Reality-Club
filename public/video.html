@@ -37,7 +37,9 @@ a{color:inherit}
 .ceja .at{display:inline-block;margin-right:6px;padding:2px 10px;border-radius:6px;background:#041E21;color:#25D5E9;font-weight:900;letter-spacing:0.04em;text-transform:uppercase}
 
 .main{flex:1;width:100%;max-width:980px;margin:0 auto;padding:clamp(32px,5vw,56px) 16px 56px;display:flex;flex-direction:column;align-items:center;gap:clamp(22px,3vw,32px);text-align:center}
+.logo{display:flex;flex-direction:column;align-items:center;gap:12px}
 .iso{height:40px;width:auto;display:block;filter:drop-shadow(0 0 18px rgba(37,213,233,0.45))}
+.logo-word{height:16px;width:auto;display:block}
 
 /* Headline */
 
@@ -87,7 +89,10 @@ fbq('track', 'PageView');
   <p class="ceja"><strong class="at">Atención:</strong> aprende a hacer videos con IA<br class="br-m"> que se vuelven virales y anuncios que venden más.</p>
 
   <main class="main">
-    <img class="iso" src="assets/logo-r.png" alt="Reality Club">
+    <div class="logo">
+      <img class="iso" src="assets/logo-r.png" alt="">
+      <img class="logo-word" src="assets/logo-reality-club-blanco.png" alt="Reality Club">
+    </div>
 
 
     <!-- VIDEO: pega aquí el código de vturb (trae el headline incluido), dentro de <div class="vsl" id="vsl">, y borra el bloque vsl-ph -->

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Botón Rojo · Mira el video</title>
+<meta name="description" content="El Botón Rojo: vende lo que sea. Haz que tus ventas exploten.">
+<meta name="theme-color" content="#D90A0A">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/botonrojo-favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/botonrojo-favicon-512.png">
+<link rel="apple-touch-icon" href="assets/botonrojo-apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@500;600;700;800;900&amp;display=swap">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0}
+body{min-height:100vh;background:#F3F1F1;color:#111111;font-family:-apple-system,"SF Pro Text",Inter,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:clip}
+a{color:inherit}
+.hl{color:#D90A0A}
+
+/* Fondo: blanco del empaque, con sombra gris y luces rojas que se mueven lento */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:radial-gradient(120% 85% at 50% -10%,#FFFFFF 0%,#F6F4F4 40%,#E4E0E0 80%,#D6D1D1 100%)}
+.bg i{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.5;will-change:transform}
+.bg .b1{width:60vmax;height:60vmax;left:-24vmax;top:-20vmax;background:radial-gradient(closest-side,rgba(227,6,19,0.22),rgba(227,6,19,0));animation:drift1 26s ease-in-out infinite alternate}
+.bg .b2{width:55vmax;height:55vmax;right:-24vmax;top:22vh;background:radial-gradient(closest-side,rgba(227,6,19,0.16),rgba(227,6,19,0));animation:drift2 32s ease-in-out infinite alternate}
+.bg .b3{width:50vmax;height:50vmax;left:15vw;bottom:-32vmax;background:radial-gradient(closest-side,rgba(120,110,110,0.25),rgba(120,110,110,0));animation:drift3 38s ease-in-out infinite alternate}
+.bg::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.035) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 0%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 30%,#000 0%,transparent 75%)}
+@keyframes drift1{to{transform:translate(18vw,12vh) scale(1.1)}}
+@keyframes drift2{to{transform:translate(-16vw,-10vh) scale(1.15)}}
+@keyframes drift3{to{transform:translate(12vw,-14vh) scale(0.9)}}
+
+.page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+
+/* Ceja: rojo del botón, con la franja de seguridad amarilla y negra de la base */
+.ceja{position:relative;margin:0;padding:16px 16px 22px;background:linear-gradient(90deg,#B00000,#E30613 50%,#B00000);color:#FFFFFF;text-align:center;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(15px,1.8vw,21px);line-height:1.45;text-wrap:balance;box-shadow:0 6px 30px rgba(227,6,19,0.3)}
+.ceja::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:repeating-linear-gradient(-45deg,#F5B800 0 12px,#151515 12px 24px)}
+.ceja .at{display:inline-block;margin-right:6px;padding:2px 10px;border-radius:6px;background:#111111;color:#FFFFFF;font-weight:900;letter-spacing:0.04em;text-transform:uppercase}
+
+.main{flex:1;width:100%;max-width:980px;margin:0 auto;padding:clamp(32px,5vw,56px) 16px 56px;display:flex;flex-direction:column;align-items:center;gap:clamp(22px,3vw,32px);text-align:center}
+
+/* Logo en texto, como en el empaque */
+.logo{display:flex;flex-direction:column;align-items:center;font-family:Montserrat,sans-serif;font-weight:900;line-height:1;letter-spacing:-0.01em;text-decoration:none}
+.logo .el{font-size:15px;font-weight:800;color:#111111}
+.logo .name{font-size:30px;color:#111111;white-space:nowrap}
+.logo .name b{color:#E30613;font-weight:900}
+.logo .name sup{font-size:0.38em;font-weight:700;color:#E30613;vertical-align:top;margin-left:2px}
+.logo .tag{margin-top:7px;font-size:10px;font-weight:500;letter-spacing:0.42em;color:#222222;padding-left:0.42em}
+
+/* Recuadro del video */
+.vsl{position:relative;width:100%;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:#000;border:1px solid rgba(227,6,19,0.55);box-shadow:0 0 0 6px rgba(227,6,19,0.08),0 0 60px rgba(227,6,19,0.22),0 30px 60px rgba(0,0,0,0.28)}
+.vsl > iframe,.vsl > video,.vsl > div:not(.vsl-ph){position:absolute;inset:0;width:100%;height:100%;border:0}
+.vsl-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:radial-gradient(circle at 50% 45%,#3A0B0B 0%,#000 75%);color:rgba(255,255,255,0.6);font-size:14px}
+.vsl-play{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 40% 32%,#FF3B3B,#E30613 55%,#A80000);color:#FFFFFF;box-shadow:0 0 0 10px rgba(227,6,19,0.2),0 0 40px rgba(227,6,19,0.6);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 18px rgba(227,6,19,0.08),0 0 50px rgba(227,6,19,0.75)}}
+
+/* Texto debajo del video */
+.below{margin:0;max-width:760px;font-size:clamp(18px,2.1vw,23px);line-height:1.45;font-weight:500;color:rgba(17,17,17,0.85)}
+.below strong{color:#111111;font-weight:800}
+.below strong.hl{color:#D90A0A}
+
+/* Pie */
+.foot{position:relative;z-index:1;padding:40px 16px 48px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;border-top:1px solid rgba(0,0,0,0.08);background:rgba(255,255,255,0.6)}
+.foot .logo .name{font-size:20px}
+.foot .logo .el{font-size:11px}
+.foot p{margin:0;font-size:12.5px;color:rgba(0,0,0,0.55)}
+.foot .links a{color:rgba(0,0,0,0.7);text-decoration:none}
+.foot .links a:hover{color:#E30613}
+.foot .legal{max-width:640px;font-size:11.5px;line-height:1.55;color:rgba(0,0,0,0.42)}
+
+.br-m{display:none}
+@media (max-width:599px){
+.vsl{border-radius:14px}
+.vsl-play{width:64px;height:64px}
+.vsl-play svg{width:24px;height:24px}
+.logo .name{font-size:26px}
+.ceja{padding:10px 4px 15px;font-size:14px;line-height:1.4;font-weight:500;letter-spacing:-0.012em}
+.ceja::after{height:5px}
+.ceja .at{margin-right:3px;padding:1px 5px;border-radius:5px;letter-spacing:0.02em}
+.br-m{display:inline}
+}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+<div class="page">
+  <p class="ceja"><strong class="at">¡Detente!</strong> No cierres esta página<br class="br-m"> antes de conocer <strong>El Botón Rojo</strong></p>
+
+  <main class="main">
+    <div class="logo" aria-label="El Botón Rojo">
+      <span class="el">EL</span>
+      <span class="name">BOTÓN <b>ROJO</b><sup>®</sup></span>
+      <span class="tag">VENDE LO QUE SEA</span>
+    </div>
+
+    <!-- VIDEO: pega aquí el código de vturb (trae el headline incluido), dentro de <div class="vsl" id="vsl">, y borra el bloque vsl-ph -->
+    <div class="vsl" id="vsl">
+      <div class="vsl-ph">
+        <span class="vsl-play" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></span>
+        <span>Aquí va el video</span>
+      </div>
+    </div>
+
+    <p class="below">Aprende a vender lo que sea con <strong class="hl">El Botón Rojo</strong> y sácale provecho al <strong>Club de Socios de Reality Club</strong>. Con 3 ventas al día, te haces <strong class="hl">2.000 USD al mes</strong>.</p>
+  </main>
+
+  <footer class="foot">
+    <div class="logo" aria-label="El Botón Rojo">
+      <span class="el">EL</span>
+      <span class="name">BOTÓN <b>ROJO</b><sup>®</sup></span>
+    </div>
+    <p>© 2026 Libana Mar SAS · Todos los derechos reservados</p>
+    <p class="links"><a href="terminos.html">Términos y condiciones</a> · <a href="privacidad.html">Política de datos</a></p>
+    <p class="legal">Este sitio no forma parte de Facebook ni de Meta Platforms, Inc., y no está respaldado por Facebook de ninguna manera. Facebook es una marca registrada de Meta Platforms, Inc.</p>
+  </footer>
+</div>
+<script src="https://cerebrocentro.vercel.app/rastreo.js" defer></script>
+</body>
+</html>
