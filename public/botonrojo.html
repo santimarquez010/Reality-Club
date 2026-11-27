@@ -9,9 +9,17 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/botonrojo-favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="assets/botonrojo-favicon-512.png">
 <link rel="apple-touch-icon" href="assets/botonrojo-apple-touch-icon.png">
+<!-- vturb: conecta desde el inicio para que el video y su headline lleguen antes -->
+<link rel="preconnect" href="https://scripts.converteai.net">
+<link rel="preconnect" href="https://cdn.converteai.net">
+<link rel="preconnect" href="https://images.converteai.net">
+<link rel="preload" as="script" href="https://scripts.converteai.net/20ea845f-a13d-40c8-b3b4-169ed8f1ad07/players/6b09b106dbd1503394029a2a/v4/player.js">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@500;600;700;800;900&amp;display=swap">
+<!-- Las fuentes cargan sin frenar la página (mientras llegan se ve la letra del sistema) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@500;600;700;800;900&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@500;600;700;800;900&amp;display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@500;600;700;800;900&amp;display=swap"></noscript>
 <style>
 *{box-sizing:border-box}
 html,body{margin:0}
@@ -48,7 +56,9 @@ a{color:inherit}
 .logo .tag{margin-top:7px;font-size:10px;font-weight:500;letter-spacing:0.42em;color:#222222;padding-left:0.42em}
 
 /* Recuadro del video */
-.vsl{position:relative;width:100%;background:transparent}
+.vsl{position:relative;width:100%;background:transparent;container-type:inline-size}
+/* Reserva el alto final del reproductor de vturb (headline + video) para que la página no salte al cargar. Medido: alto ≈ 28px + 94.7% del ancho */
+.vsl vturb-smartplayer{min-height:calc(28px + 94.7cqw)}
 .vsl > iframe,.vsl > video,.vsl > div:not(.vsl-ph){position:absolute;inset:0;width:100%;height:100%;border:0}
 .vsl-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:radial-gradient(circle at 50% 45%,#3A0B0B 0%,#000 75%);color:rgba(255,255,255,0.6);font-size:14px}
 .vsl-play{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 40% 32%,#FF3B3B,#E30613 55%,#A80000);color:#FFFFFF;box-shadow:0 0 0 10px rgba(227,6,19,0.2),0 0 40px rgba(227,6,19,0.6);animation:pulse 2.4s ease-in-out infinite}
@@ -95,7 +105,7 @@ a{color:inherit}
 
     <!-- VIDEO: reproductor de vturb (trae el headline incluido) -->
     <div class="vsl" id="vsl">
-      <vturb-smartplayer id="vid-6b09b106dbd1503394029a2a" style="display: block; margin: 0 auto; width: 100%; "><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 83.77% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/20ea845f-a13d-40c8-b3b4-169ed8f1ad07/players/6b09b106dbd1503394029a2a/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
+      <vturb-smartplayer id="vid-6b09b106dbd1503394029a2a" style="display: block; margin: 0 auto; width: 100%; "><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: calc(28px + 94.7%) 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/20ea845f-a13d-40c8-b3b4-169ed8f1ad07/players/6b09b106dbd1503394029a2a/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
     </div>
 
     <p class="below">Aprende a vender lo que sea con <strong class="hl">El Botón Rojo</strong> y sácale provecho al <strong>Club de Socios de Reality Club</strong>. Con 3 ventas al día, te haces <strong class="hl">2.000 USD al mes</strong>.</p>

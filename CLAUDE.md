@@ -31,6 +31,13 @@ Sitio HTML estático (sin build) en `public/`. Se publica en Cloudflare Workers 
 - No enlazar las páginas de socios desde el menú, el pie de página ni un sitemap.
 - Si algún día el sitio envía `Content-Security-Policy`, permitir `https://socios-realityclub.vercel.app`, `https://connect.facebook.net` y `https://www.facebook.com` en `script-src`, `connect-src` e `img-src`.
 
+## Velocidad de carga
+
+- En `index.html` la foto principal es un `<picture>` (foto de celular hasta 899px) con `fetchpriority="high"` y sin `loading="lazy"`. Ninguna otra imagen va con `loading="eager"`: todas las demás llevan `loading="lazy"`.
+- Los videos de `index.html` llevan la portada en `data-poster` (no en `poster`); `js/main.js` la pone cuando su sección se acerca a la pantalla. Todo video nuevo va igual.
+- Las fuentes de Google cargan sin bloquear (`preload` + `media="print" onload`) en `index.html` y `botonrojo.html`.
+- En `botonrojo.html` el alto del reproductor de vturb está reservado (`28px + 94.7%` del ancho, medido con su headline). Si cambia el headline o el video en vturb, volver a medirlo.
+
 ## Estilo y textos
 
 - Siempre "socios", nunca "afiliados". Comisión: 50%.

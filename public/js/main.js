@@ -3,6 +3,28 @@
 (function () {
   'use strict';
 
+  // Portadas de los videos: se cargan cuando su sección se acerca a la pantalla
+  // (todas las de la sección, también las de los carruseles), para que la foto
+  // principal llegue primero en celulares lentos.
+  (function () {
+    var vids = [].slice.call(document.querySelectorAll('video[data-poster]'));
+    function ponerPortada(v) { if (v.dataset.poster) { v.poster = v.dataset.poster; v.removeAttribute('data-poster'); } }
+    if (!('IntersectionObserver' in window)) { vids.forEach(ponerPortada); return; }
+    var grupos = [];
+    vids.forEach(function (v) {
+      var g = v.closest('section') || v.parentElement;
+      if (grupos.indexOf(g) < 0) grupos.push(g);
+    });
+    var pio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        [].forEach.call(en.target.querySelectorAll('video[data-poster]'), ponerPortada);
+        pio.unobserve(en.target);
+      });
+    }, { rootMargin: '900px 0px' });
+    grupos.forEach(function (g) { pio.observe(g); });
+  })();
+
   var mqMobile = window.matchMedia ? window.matchMedia('(max-width: 899px)') : { matches: false };
   var safePlay = function (v) { var p = v && v.play(); if (p && p.catch) p.catch(function () {}); };
   var onScrollRaf = function (fn) {

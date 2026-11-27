@@ -11,7 +11,10 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@700;800;900&amp;family=Permanent+Marker&amp;display=swap">
+<!-- Las fuentes cargan sin frenar la página (mientras llegan se ve la letra del sistema) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@700;800;900&amp;family=Permanent+Marker&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@700;800;900&amp;family=Permanent+Marker&amp;display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@700;800;900&amp;family=Permanent+Marker&amp;display=swap"></noscript>
 <link rel="stylesheet" href="css/styles.css">
 <!-- Meta Pixel Code -->
 <script>
@@ -27,8 +30,10 @@ fbq('track', 'PageView');
 
 <!-- 2 · HERO EDITORIAL -->
 <header class="hero-box" aria-label="Portada" style="position: relative; height: clamp(720px, 64vw, 960px); overflow: hidden; background: #041E21">
-  <img loading="lazy" fetchpriority="high" class="anim-settle hero-d" src="assets/e110eab4cba68945ea865051d76433cf.jpg" alt="Tres modelos virtuales creados con IA, con gafas de sol y abrigos, frente a arcos de concreto al atardecer" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%">
-  <img loading="lazy" class="anim-settle hero-m" src="assets/7df9959986d89da0952d3efeab47b73c.jpg" alt="Tres modelos virtuales creados con IA, con gafas de sol y abrigos, frente a arcos de concreto al atardecer" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%">
+  <picture>
+    <source media="(max-width: 899px)" srcset="assets/7df9959986d89da0952d3efeab47b73c.jpg">
+    <img fetchpriority="high" class="anim-settle hero-img" src="assets/e110eab4cba68945ea865051d76433cf.jpg" alt="Tres modelos virtuales creados con IA, con gafas de sol y abrigos, frente a arcos de concreto al atardecer" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+  </picture>
   <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, #0A3A3F 0%, #1A97A5 45%, #25D5E9 100%); mix-blend-mode: soft-light; opacity: 0.45"></div>
   <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,58,63,0.7) 0%, rgba(10,58,63,0) 22%, rgba(10,58,63,0) 42%, rgba(10,58,63,0.62) 60%, rgba(4,30,33,0.94) 80%, #041E21 100%)"></div>
 
@@ -82,7 +87,7 @@ fbq('track', 'PageView');
     <div class="rail">
       <article style="display: flex; flex-direction: column; gap: 14px">
           <div class="phone">
-            <video data-vid="h2" src="assets/5fec6890a79775f68cf2a9f6c7c5e880.mp4" poster="assets/cba5ac8265e34da2424d4dc18e4bd55e.jpg" playsInline="playsInline" preload="none" aria-label="Anuncio hecho con IA: un creador UGC con el producto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
+            <video data-vid="h2" src="assets/5fec6890a79775f68cf2a9f6c7c5e880.mp4" data-poster="assets/cba5ac8265e34da2424d4dc18e4bd55e.jpg" playsInline="playsInline" preload="none" aria-label="Anuncio hecho con IA: un creador UGC con el producto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
           <button type="button" class="reto-btn" data-vid-toggle="h2" aria-label="Reproducir video con sonido"><span class="dc-if" data-play-ind="h2"><span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span></span></button>
             <span class="pill pill-a" style="position: absolute; left: 14px; bottom: 14px; background: rgba(10,58,63,0.8); color: #FFFFFF">0:25</span>
           </div>
@@ -93,7 +98,7 @@ fbq('track', 'PageView');
         </article>
       <article style="display: flex; flex-direction: column; gap: 14px">
           <div class="phone">
-            <video data-vid="h1" src="assets/5e767563e6753cbeb59e767403b02d7f.mp4" poster="assets/0ff863a52c4bf808f2997f31a50fd972.jpg" playsInline="playsInline" preload="none" aria-label="Anuncio hecho con IA: un alter ego con imagen y voz clonadas" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
+            <video data-vid="h1" src="assets/5e767563e6753cbeb59e767403b02d7f.mp4" data-poster="assets/0ff863a52c4bf808f2997f31a50fd972.jpg" playsInline="playsInline" preload="none" aria-label="Anuncio hecho con IA: un alter ego con imagen y voz clonadas" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
           <button type="button" class="reto-btn" data-vid-toggle="h1" aria-label="Reproducir video con sonido"><span class="dc-if" data-play-ind="h1"><span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span></span></button>
             <span class="pill pill-a" style="position: absolute; left: 14px; bottom: 14px; background: rgba(10,58,63,0.8); color: #FFFFFF">0:25</span>
           </div>
@@ -104,7 +109,7 @@ fbq('track', 'PageView');
         </article>
       <article style="display: flex; flex-direction: column; gap: 14px">
           <div class="phone">
-            <video data-vid="h3" src="assets/40437ec91e17f72b55b083f6c26d58e5.mp4" poster="assets/a57fedfc63e0fb89834632bd52b679a3.jpg" playsInline="playsInline" preload="none" aria-label="Anuncio hecho con IA: el mismo talento digital hablándole a otro mercado" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
+            <video data-vid="h3" src="assets/40437ec91e17f72b55b083f6c26d58e5.mp4" data-poster="assets/a57fedfc63e0fb89834632bd52b679a3.jpg" playsInline="playsInline" preload="none" aria-label="Anuncio hecho con IA: el mismo talento digital hablándole a otro mercado" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
           <button type="button" class="reto-btn" data-vid-toggle="h3" aria-label="Reproducir video con sonido"><span class="dc-if" data-play-ind="h3"><span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span></span></button>
             <span class="pill pill-a" style="position: absolute; left: 14px; bottom: 14px; background: rgba(10,58,63,0.8); color: #FFFFFF">0:15</span>
           </div>
@@ -121,7 +126,7 @@ fbq('track', 'PageView');
 <!-- 20 · GARANTÍA -->
 <section class="sec light gar-sec">
   <div class="wrap" style="display: flex; flex-wrap: wrap; gap: 48px; align-items: center; justify-content: center">
-    <img loading="eager" fetchpriority="low" decoding="async" src="assets/16232da9c9de6f819c0187356140f6d2.webp" alt="Sello de garantía de 7 días" style="flex: none; width: 260px; height: auto; display: block; filter: drop-shadow(0 18px 30px rgba(10,58,63,0.25))">
+    <img loading="lazy" decoding="async" src="assets/16232da9c9de6f819c0187356140f6d2.webp" alt="Sello de garantía de 7 días" style="flex: none; width: 260px; height: auto; display: block; filter: drop-shadow(0 18px 30px rgba(10,58,63,0.25))">
     <div style="flex: 1 1 420px; max-width: 620px; display: flex; flex-direction: column; gap: 18px">
       <h2 class="h2" style="font-size: clamp(28px, 3.4vw, 44px)">Garantía de 7 días o <span class="hl">te devolvemos tu dinero</span></h2>
       <p class="lead">Entra, mira las clases, instala tus agentes y crea tu primer modelo virtual. Si en los primeros 7 días sientes que no es para ti, te devolvemos tu dinero. Sin preguntas.</p>
@@ -163,7 +168,7 @@ fbq('track', 'PageView');
     <div class="rail">
       <article class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 14px">
           <div class="thumb" style="aspect-ratio: 9 / 16">
-            <video data-vid="f1" src="assets/812ed8e0771f9f4a4754814ff5ffa551.mp4" poster="assets/c8d4dd685e2762d8f0098faca8b50151.jpg" playsInline="playsInline" preload="none" aria-label="Ejemplo de formato UGC con producto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
+            <video data-vid="f1" src="assets/812ed8e0771f9f4a4754814ff5ffa551.mp4" data-poster="assets/c8d4dd685e2762d8f0098faca8b50151.jpg" playsInline="playsInline" preload="none" aria-label="Ejemplo de formato UGC con producto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
             <button type="button" class="reto-btn" data-vid-toggle="f1" aria-label="Reproducir video con sonido"><span class="dc-if" data-play-ind="f1"><span class="play" aria-hidden="true" style="width: 56px; height: 56px"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span></span></button>
             <span class="pill pill-a" style="position: absolute; left: 12px; bottom: 12px; background: rgba(10,58,63,0.8); color: #FFFFFF">0:28</span>
           </div>
@@ -174,7 +179,7 @@ fbq('track', 'PageView');
         </article>
       <article class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 14px">
           <div class="thumb" style="aspect-ratio: 9 / 16">
-            <video data-vid="f2" src="assets/8a1183ce848cc37db87fdb8799bcfa5c.mp4" poster="assets/e21aa1dc31e156e1abc509890ed4a102.jpg" playsInline="playsInline" preload="none" aria-label="Ejemplo de formato moda" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
+            <video data-vid="f2" src="assets/8a1183ce848cc37db87fdb8799bcfa5c.mp4" data-poster="assets/e21aa1dc31e156e1abc509890ed4a102.jpg" playsInline="playsInline" preload="none" aria-label="Ejemplo de formato moda" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
             <button type="button" class="reto-btn" data-vid-toggle="f2" aria-label="Reproducir video con sonido"><span class="dc-if" data-play-ind="f2"><span class="play" aria-hidden="true" style="width: 56px; height: 56px"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span></span></button>
             <span class="pill pill-a" style="position: absolute; left: 12px; bottom: 12px; background: rgba(10,58,63,0.8); color: #FFFFFF">0:17</span>
           </div>
@@ -185,7 +190,7 @@ fbq('track', 'PageView');
         </article>
       <article class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 14px">
           <div class="thumb" style="aspect-ratio: 9 / 16">
-            <video data-vid="f3" src="assets/ea263e0108a06b121211493e376cc72f.mp4" poster="assets/0210d56f320feb1aec60d09937c583a2.jpg" playsInline="playsInline" preload="none" aria-label="Ejemplo de formato podcast" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
+            <video data-vid="f3" src="assets/ea263e0108a06b121211493e376cc72f.mp4" data-poster="assets/0210d56f320feb1aec60d09937c583a2.jpg" playsInline="playsInline" preload="none" aria-label="Ejemplo de formato podcast" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
             <button type="button" class="reto-btn" data-vid-toggle="f3" aria-label="Reproducir video con sonido"><span class="dc-if" data-play-ind="f3"><span class="play" aria-hidden="true" style="width: 56px; height: 56px"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span></span></button>
             <span class="pill pill-a" style="position: absolute; left: 12px; bottom: 12px; background: rgba(10,58,63,0.8); color: #FFFFFF">0:26</span>
           </div>
@@ -196,7 +201,7 @@ fbq('track', 'PageView');
         </article>
       <article class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 14px">
           <div class="thumb" style="aspect-ratio: 9 / 16">
-            <video data-vid="f4" src="assets/7102d1e1e58a7e35f28d25bd8923f183.mp4" poster="assets/2e68cb662f0a127cc84e605c49aebdae.jpg" playsInline="playsInline" preload="none" aria-label="Ejemplo de formato DualCast" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
+            <video data-vid="f4" src="assets/7102d1e1e58a7e35f28d25bd8923f183.mp4" data-poster="assets/2e68cb662f0a127cc84e605c49aebdae.jpg" playsInline="playsInline" preload="none" aria-label="Ejemplo de formato DualCast" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
             <button type="button" class="reto-btn" data-vid-toggle="f4" aria-label="Reproducir video con sonido"><span class="dc-if" data-play-ind="f4"><span class="play" aria-hidden="true" style="width: 56px; height: 56px"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span></span></button>
             <span class="pill pill-a" style="position: absolute; left: 12px; bottom: 12px; background: rgba(10,58,63,0.8); color: #FFFFFF">0:31</span>
           </div>
@@ -207,7 +212,7 @@ fbq('track', 'PageView');
         </article>
       <article class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 14px">
           <div class="thumb" style="aspect-ratio: 9 / 16">
-            <video data-vid="f5" src="assets/4971ffaab2099a938e5fcbf15cd0ec5a.mp4" poster="assets/b79c0585fdf5af4cfa35af3b04d89ba6.jpg" playsInline="playsInline" preload="none" aria-label="Ejemplo de formato animación" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
+            <video data-vid="f5" src="assets/4971ffaab2099a938e5fcbf15cd0ec5a.mp4" data-poster="assets/b79c0585fdf5af4cfa35af3b04d89ba6.jpg" playsInline="playsInline" preload="none" aria-label="Ejemplo de formato animación" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
             <button type="button" class="reto-btn" data-vid-toggle="f5" aria-label="Reproducir video con sonido"><span class="dc-if" data-play-ind="f5"><span class="play" aria-hidden="true" style="width: 56px; height: 56px"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span></span></button>
             <span class="pill pill-a" style="position: absolute; left: 12px; bottom: 12px; background: rgba(10,58,63,0.8); color: #FFFFFF">0:24</span>
           </div>
@@ -218,7 +223,7 @@ fbq('track', 'PageView');
         </article>
       <article class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 14px">
           <div class="thumb" style="aspect-ratio: 9 / 16">
-            <video data-vid="f6" src="assets/moda-editorial.mp4" poster="assets/moda-editorial.jpg" playsInline="playsInline" preload="none" aria-label="Ejemplo de formato moda editorial" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
+            <video data-vid="f6" src="assets/moda-editorial.mp4" data-poster="assets/moda-editorial.jpg" playsInline="playsInline" preload="none" aria-label="Ejemplo de formato moda editorial" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
             <button type="button" class="reto-btn" data-vid-toggle="f6" aria-label="Reproducir video con sonido"><span class="dc-if" data-play-ind="f6"><span class="play" aria-hidden="true" style="width: 56px; height: 56px"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span></span></button>
             <span class="pill pill-a" style="position: absolute; left: 12px; bottom: 12px; background: rgba(10,58,63,0.8); color: #FFFFFF">0:17</span>
           </div>
@@ -249,7 +254,7 @@ fbq('track', 'PageView');
     <div class="rail">
       <div style="display: flex; flex-direction: column; gap: 16px">
         <div class="phone">
-          <video data-vid="a1" src="assets/876841fdac7b00076fdf7b1c51a35c03.mp4" poster="assets/f7ffeb4fcae35f879ac5ed387329ae1c.jpg" playsInline="playsInline" preload="none" aria-label="Anuncio hecho con IA corriendo en campaña" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
+          <video data-vid="a1" src="assets/876841fdac7b00076fdf7b1c51a35c03.mp4" data-poster="assets/f7ffeb4fcae35f879ac5ed387329ae1c.jpg" playsInline="playsInline" preload="none" aria-label="Anuncio hecho con IA corriendo en campaña" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
           <button type="button" class="reto-btn" data-vid-toggle="a1" aria-label="Reproducir video con sonido"><span class="dc-if" data-play-ind="a1"><span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span></span></button>
           <span class="pill pill-a" style="position: absolute; left: 14px; bottom: 14px; background: rgba(10,58,63,0.8); color: #FFFFFF">0:30</span>
         </div>
@@ -257,7 +262,7 @@ fbq('track', 'PageView');
       </div>
       <div style="display: flex; flex-direction: column; gap: 16px">
         <div class="phone">
-          <video data-vid="a2" src="assets/db0d00b38f399cddf6b6bac7e04917dd.mp4" poster="assets/385d4913813a24e42a1ef648c2974d26.jpg" playsInline="playsInline" preload="none" aria-label="Segundo anuncio hecho con IA corriendo en campaña" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
+          <video data-vid="a2" src="assets/db0d00b38f399cddf6b6bac7e04917dd.mp4" data-poster="assets/385d4913813a24e42a1ef648c2974d26.jpg" playsInline="playsInline" preload="none" aria-label="Segundo anuncio hecho con IA corriendo en campaña" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
           <button type="button" class="reto-btn" data-vid-toggle="a2" aria-label="Reproducir video con sonido"><span class="dc-if" data-play-ind="a2"><span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span></span></button>
           <span class="pill pill-a" style="position: absolute; left: 14px; bottom: 14px; background: rgba(10,58,63,0.8); color: #FFFFFF">0:20</span>
         </div>
@@ -265,7 +270,7 @@ fbq('track', 'PageView');
       </div>
       <div style="display: flex; flex-direction: column; gap: 16px">
         <div class="phone">
-          <video data-vid="a3" src="assets/anuncio-3.mp4" poster="assets/anuncio-3.jpg" playsInline="playsInline" preload="none" aria-label="Tercer anuncio hecho con IA corriendo en campaña" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
+          <video data-vid="a3" src="assets/anuncio-3.mp4" data-poster="assets/anuncio-3.jpg" playsInline="playsInline" preload="none" aria-label="Tercer anuncio hecho con IA corriendo en campaña" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
           <button type="button" class="reto-btn" data-vid-toggle="a3" aria-label="Reproducir video con sonido"><span class="dc-if" data-play-ind="a3"><span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span></span></button>
           <span class="pill pill-a" style="position: absolute; left: 14px; bottom: 14px; background: rgba(10,58,63,0.8); color: #FFFFFF">0:13</span>
         </div>
@@ -279,7 +284,7 @@ fbq('track', 'PageView');
 <!-- 7C · CLUB DE SOCIOS -->
 <section id="socios" class="sec socios-video">
   <div class="sv-bg" aria-hidden="true">
-    <video class="sv-video" src="assets/socios-fondo.mp4" poster="assets/socios-fondo.jpg" muted loop playsinline preload="none"></video>
+    <video class="sv-video" src="assets/socios-fondo.mp4" data-poster="assets/socios-fondo.jpg" muted loop playsinline preload="none"></video>
     <div class="sv-shade"></div>
   </div>
   <div class="wrap" style="display: flex; flex-direction: column; gap: 40px">
@@ -293,19 +298,19 @@ fbq('track', 'PageView');
     </div>
     <ol class="grid-auto" style="list-style: none; margin: 0; padding: 0">
       <li class="card" style="display: flex; flex-direction: column; gap: 14px">
-        <div class="step-media"><video class="step-video" src="assets/socios-fondo.mp4" poster="assets/socios-fondo.jpg" muted loop playsinline preload="none" aria-label="Un hombre en un club exclusivo"></video></div>
+        <div class="step-media"><video class="step-video" src="assets/socios-fondo.mp4" data-poster="assets/socios-fondo.jpg" muted loop playsinline preload="none" aria-label="Un hombre en un club exclusivo"></video></div>
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"></circle><path d="M3.5 20a5.5 5.5 0 0 1 11 0"></path><path d="M19 8v6"></path><path d="M16 11h6"></path></svg></div><span style="font-family: Montserrat, sans-serif; font-weight: 900; font-size: 44px; line-height: 1; color: rgba(37,213,233,0.85)">01</span></div>
         <h3 class="h3">Te unes como socio</h3>
         <p style="margin: 0; line-height: 1.55; font-size: 16px">Recibes tu enlace de socio para recibir comisiones.</p>
       </li>
       <li class="card" style="display: flex; flex-direction: column; gap: 14px">
-        <div class="step-media"><video class="step-video" src="assets/socios-paso2.mp4" poster="assets/socios-paso2.jpg" muted loop playsinline preload="none" aria-label="Primer plano de los ojos de un hombre creando un anuncio con IA"></video></div>
+        <div class="step-media"><video class="step-video" src="assets/socios-paso2.mp4" data-poster="assets/socios-paso2.jpg" muted loop playsinline preload="none" aria-label="Primer plano de los ojos de un hombre creando un anuncio con IA"></video></div>
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"></rect><path d="m16 10 5-3v10l-5-3z"></path></svg></div><span style="font-family: Montserrat, sans-serif; font-weight: 900; font-size: 44px; line-height: 1; color: rgba(37,213,233,0.85)">02</span></div>
         <h3 class="h3">Creas tus anuncios</h3>
         <p style="margin: 0; line-height: 1.55; font-size: 16px">Con los modelos virtuales, guiones y agentes que aprendiste a usar.</p>
       </li>
       <li class="card" style="display: flex; flex-direction: column; gap: 14px">
-        <div class="step-media"><video class="step-video" src="assets/socios-paso3.mp4" poster="assets/socios-paso3.jpg" muted loop playsinline preload="none" aria-label="Un hombre celebra mientras mira su celular"></video></div>
+        <div class="step-media"><video class="step-video" src="assets/socios-paso3.mp4" data-poster="assets/socios-paso3.jpg" muted loop playsinline preload="none" aria-label="Un hombre celebra mientras mira su celular"></video></div>
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div><span style="font-family: Montserrat, sans-serif; font-weight: 900; font-size: 44px; line-height: 1; color: rgba(37,213,233,0.85)">03</span></div>
         <h3 class="h3">Ganas el 50% por cada venta</h3>
         <p style="margin: 0; line-height: 1.55; font-size: 16px">El dinero te llega a tu cuenta bancaria en tu moneda local.</p>
@@ -338,11 +343,11 @@ fbq('track', 'PageView');
       </div>
       <div style="position: relative; width: 100%; max-width: 980px; aspect-ratio: 16 / 9; border-radius: 24px; overflow: hidden; border: 1px solid rgba(26,151,165,0.65)">
         <div style="position: absolute; inset: 0; background: #0A3A3F; display: flex; align-items: flex-end; justify-content: flex-end; padding: 20px">
-          <img loading="eager" fetchpriority="low" decoding="async" src="assets/b1e5fb220369c4d7d7c45d04ddde498b.jpg" alt="Anuncio final: la modelo virtual presenta una crema facial en un baño" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none">
+          <img loading="lazy" decoding="async" src="assets/b1e5fb220369c4d7d7c45d04ddde498b.jpg" alt="Anuncio final: la modelo virtual presenta una crema facial en un baño" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none">
           <span class="pill pill-c" style="position: relative">Después · anuncio con IA</span>
         </div>
         <div style="position: absolute; inset: 0; background: #6D6A6A; display: flex; align-items: flex-end; padding: 20px; clip-path: inset(0 50% 0 0)" id="ba-top">
-          <img loading="eager" fetchpriority="low" decoding="async" src="assets/3a54f965a0942d4cccbf011e5e693c19.jpg" alt="Hoja de personaje de la modelo virtual con cinco vistas" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none">
+          <img loading="lazy" decoding="async" src="assets/3a54f965a0942d4cccbf011e5e693c19.jpg" alt="Hoja de personaje de la modelo virtual con cinco vistas" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none">
           <span class="pill pill-a" style="position: relative; background: rgba(10,58,63,0.85); color: #FFFFFF">Antes · hoja de personaje</span>
         </div>
         <div aria-hidden="true" id="ba-line" style="position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: #25D5E9; box-shadow: 0 0 18px #25D5E9; transform: translateX(-1px)">
@@ -424,8 +429,8 @@ fbq('track', 'PageView');
 <!-- 10 · EL AGENTE DE GUIONES -->
 <section class="sec ag-sec">
   <div class="ag-bg" aria-hidden="true">
-    <video class="ag-video ag-video-d" src="assets/agente-fondo.mp4" poster="assets/agente-fondo.jpg" muted loop playsinline preload="none"></video>
-    <video class="ag-video ag-video-m" src="assets/agente-fondo-vertical.mp4" poster="assets/agente-fondo-vertical.jpg" muted loop playsinline preload="none"></video>
+    <video class="ag-video ag-video-d" src="assets/agente-fondo.mp4" data-poster="assets/agente-fondo.jpg" muted loop playsinline preload="none"></video>
+    <video class="ag-video ag-video-m" src="assets/agente-fondo-vertical.mp4" data-poster="assets/agente-fondo-vertical.jpg" muted loop playsinline preload="none"></video>
     <div class="ag-shade"></div>
   </div>
   <div class="wrap agent-flow">
@@ -643,11 +648,11 @@ fbq('track', 'PageView');
   <div class="wrap clone-wrap" style="display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
     <div style="flex: 1 1 260px; max-width: 360px; margin: 0 auto; position: relative">
       <figure class="real-face">
-        <img loading="eager" fetchpriority="high" decoding="async" src="assets/c52ed7631c3a32c7ef5901e457d4663d.jpg" alt="Foto real de la persona que se clonó">
+        <img loading="lazy" fetchpriority="high" decoding="async" src="assets/c52ed7631c3a32c7ef5901e457d4663d.jpg" alt="Foto real de la persona que se clonó">
         <figcaption>Foto real</figcaption>
       </figure>
       <div class="phone clone-phone">
-        <video data-vid="cl" src="assets/af45b3bada2d0831bc515bf19e7581ed.mp4" poster="assets/clon-portada.jpg" playsInline="playsInline" preload="none" aria-label="Video de ejemplo: un clon digital hablando a cámara" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
+        <video data-vid="cl" src="assets/af45b3bada2d0831bc515bf19e7581ed.mp4" data-poster="assets/clon-portada.jpg" playsInline="playsInline" preload="none" aria-label="Video de ejemplo: un clon digital hablando a cámara" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
           <button type="button" class="reto-btn" data-vid-toggle="cl" aria-label="Reproducir video con sonido"><span class="dc-if" data-play-ind="cl"><span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span></span></button>
         <span class="pill pill-c" style="position: absolute; left: 16px; bottom: 16px">Tu imagen · tu voz</span>
       </div>
@@ -671,7 +676,7 @@ fbq('track', 'PageView');
             <span class="eyebrow">Una sola oferta, todo incluido</span>
             <h2 class="h2" style="font-size: clamp(34px, 4vw, 48px)">Reality Club</h2>
           </div>
-          <img loading="eager" fetchpriority="low" decoding="async" class="offer-seal hide-m" src="assets/16232da9c9de6f819c0187356140f6d2.webp" alt="Sello de garantía de 7 días" style="flex: none; width: 176px; height: auto; display: block; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.35))">
+          <img loading="lazy" decoding="async" class="offer-seal hide-m" src="assets/16232da9c9de6f819c0187356140f6d2.webp" alt="Sello de garantía de 7 días" style="flex: none; width: 176px; height: auto; display: block; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.35))">
           <div class="offer-price" style="display: flex; flex-direction: column; gap: 4px">
             <p style="margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 6px"><span style="font-weight: 700; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: #25D5E9">Pago único</span><span class="offer-amt" style="font-family: Montserrat, sans-serif; font-weight: 900; font-size: clamp(56px, 7vw, 84px); line-height: 1; letter-spacing: -0.03em">US$47</span></p>
             <p class="muted" style="margin: 0; font-size: 14px">Se cobra en tu moneda local al pagar.</p>
@@ -695,7 +700,7 @@ fbq('track', 'PageView');
           <a class="btn" href="https://pay.hotmart.com/E108564799D?off=ir3bjgrz&amp;checkoutMode=10" data-checkout style="background: #34E39B; color: #0A3A3F; width: 100%; min-height: 62px; font-size: 18px">Entrar al Club · US$47</a>
           <p class="muted" style="margin: 0; font-size: 14px; text-align: center">Acceso inmediato con el correo de compra.</p>
         </div>
-        <img class="show-m offer-seal-m" loading="eager" fetchpriority="low" decoding="async" src="assets/16232da9c9de6f819c0187356140f6d2.webp" alt="Sello de garantía de 7 días">
+        <img class="show-m offer-seal-m" loading="lazy" decoding="async" src="assets/16232da9c9de6f819c0187356140f6d2.webp" alt="Sello de garantía de 7 días">
         <div style="display: flex; flex-direction: column; gap: 12px">
           <p class="offer-pay" style="margin: 0; font-size: 14px; color: rgba(255,255,255,0.8)">Aceptamos todos los métodos de pago: tarjeta de crédito o débito, PSE, transferencia y más.</p>
         </div>
@@ -754,13 +759,13 @@ fbq('track', 'PageView');
       <h3 class="h2" style="font-size: clamp(26px, 3.2vw, 40px)">¿Cuál es real y cuál es IA?</h3>
       <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; width: 100%; max-width: 620px">
         <div class="phone">
-          <video data-vid="A" src="assets/7a2da62d2d33dc0f00ef0f33573df284.mp4" poster="assets/366f693bd419828489bc72db322b26ea.jpg" playsInline="playsInline" preload="none" aria-label="Video A del reto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
+          <video data-vid="A" src="assets/7a2da62d2d33dc0f00ef0f33573df284.mp4" data-poster="assets/366f693bd419828489bc72db322b26ea.jpg" playsInline="playsInline" preload="none" aria-label="Video A del reto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
           <button type="button" class="reto-btn" data-vid-toggle="A" aria-label="Reproducir video con sonido"><span class="dc-if" data-play-ind="A"><span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span></span></button>
           <span class="pill pill-a" style="position: absolute; top: 14px; left: 14px; background: rgba(10,58,63,0.8); color: #FFFFFF">Video A</span>
           <span class="dc-if" data-reveal hidden><span class="pill pill-c reveal-pop" style="position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); white-space: nowrap">Hecho con IA</span></span>
         </div>
         <div class="phone">
-          <video data-vid="B" src="assets/118ee65def7eb1919f145dd548082553.mp4" poster="assets/571d22e6ec560c51b97729821900252c.jpg" playsInline="playsInline" preload="none" aria-label="Video B del reto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
+          <video data-vid="B" src="assets/118ee65def7eb1919f145dd548082553.mp4" data-poster="assets/571d22e6ec560c51b97729821900252c.jpg" playsInline="playsInline" preload="none" aria-label="Video B del reto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
           <button type="button" class="reto-btn" data-vid-toggle="B" aria-label="Reproducir video con sonido"><span class="dc-if" data-play-ind="B"><span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></span></span></button>
           <span class="pill pill-a" style="position: absolute; top: 14px; left: 14px; background: rgba(10,58,63,0.8); color: #FFFFFF">Video B</span>
           <span class="dc-if" data-reveal hidden><span class="pill pill-c reveal-pop" style="position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); white-space: nowrap">Hecho con IA</span></span>
