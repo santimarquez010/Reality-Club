@@ -33,7 +33,7 @@ Sitio HTML estático (sin build) en `public/`. Se publica en Cloudflare Workers 
 
 ## Velocidad de carga
 
-- En `index.html` la foto principal es un `<picture>` (foto de celular hasta 899px) con `fetchpriority="high"` y sin `loading="lazy"`. Ninguna otra imagen va con `loading="eager"`: todas las demás llevan `loading="lazy"`.
+- En `index.html` la foto principal es un `<picture>` (foto de celular hasta 899px; AVIF, luego WebP, luego JPG: `assets/hero-m.*` y `assets/hero-d.*`. Al convertir JPG con ffmpeg, usar `scale=in_range=full` para no lavar los colores) con `fetchpriority="high"` y sin `loading="lazy"`. Ninguna otra imagen va con `loading="eager"`: todas las demás llevan `loading="lazy"`.
 - Los videos de `index.html` llevan la portada en `data-poster` (no en `poster`); `js/main.js` la pone cuando su sección se acerca a la pantalla. Todo video nuevo va igual.
 - Las fuentes de Google cargan sin bloquear (`preload` + `media="print" onload`) en `index.html` y `botonrojo.html`.
 - En `botonrojo.html` el alto del reproductor de vturb está reservado (`28px + 94.7%` del ancho, medido con su headline). Si cambia el headline o el video en vturb, volver a medirlo.

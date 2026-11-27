@@ -25,7 +25,11 @@
 <!-- 2 · HERO EDITORIAL -->
 <header class="hero-box" aria-label="Portada" style="position: relative; height: clamp(720px, 64vw, 960px); overflow: hidden; background: #041E21">
   <picture>
+    <source media="(max-width: 899px)" type="image/avif" srcset="assets/hero-m.avif">
+    <source media="(max-width: 899px)" type="image/webp" srcset="assets/hero-m.webp">
     <source media="(max-width: 899px)" srcset="assets/7df9959986d89da0952d3efeab47b73c.jpg">
+    <source type="image/avif" srcset="assets/hero-d.avif">
+    <source type="image/webp" srcset="assets/hero-d.webp">
     <img fetchpriority="high" class="anim-settle hero-img" src="assets/e110eab4cba68945ea865051d76433cf.jpg" alt="Tres modelos virtuales creados con IA, con gafas de sol y abrigos, frente a arcos de concreto al atardecer" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
   </picture>
   <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, #0A3A3F 0%, #1A97A5 45%, #25D5E9 100%); mix-blend-mode: soft-light; opacity: 0.45"></div>
