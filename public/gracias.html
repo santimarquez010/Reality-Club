@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>¡Bienvenido a Reality Club!</title>
+<meta name="description" content="Tu compra está confirmada. Así entras a Reality Club.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#041E21">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;1,400&amp;family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@700;800&amp;display=swap">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2929171684105095');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2929171684105095&ev=PageView&noscript=1"></noscript>
+<!-- End Meta Pixel Code -->
+<style>
+*{box-sizing:border-box}
+:root{--bg:#041E21;--bg2:#0A3A3F;--line:rgba(26,151,165,0.45);--cyan:#25D5E9;--green:#34E39B;--text:#FFFFFF;--muted:rgba(255,255,255,0.78)}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,"SF Pro Text",Inter,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:clip}
+a{color:var(--cyan)}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+.top{display:flex;justify-content:center;align-items:center;gap:12px;padding:22px 20px;border-bottom:1px solid var(--line)}
+.top img{display:block;width:auto}
+.hero{position:relative;text-align:center;padding:clamp(48px,8vw,88px) 0 clamp(40px,6vw,64px);background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(37,213,233,0.18),rgba(4,30,33,0) 70%)}
+.ok{width:68px;height:68px;margin:0 auto 22px;border-radius:50%;display:grid;place-items:center;background:rgba(52,227,155,0.12);border:1px solid rgba(52,227,155,0.5)}
+.pill{display:inline-block;margin:0 0 16px;padding:5px 14px;border-radius:999px;background:var(--cyan);color:var(--bg);font-weight:800;font-size:13px;letter-spacing:0.06em;text-transform:uppercase}
+h1{margin:0 auto;max-width:760px;font-family:'Bodoni Moda',Georgia,serif;font-weight:500;letter-spacing:-0.02em;font-size:clamp(40px,6.4vw,76px);line-height:0.95;text-wrap:balance}
+h1 em{font-style:italic;font-weight:400;color:var(--cyan)}
+.lead{margin:22px auto 0;max-width:600px;font-size:clamp(16px,1.6vw,18px);color:var(--muted);text-wrap:pretty}
+h2{margin:0 0 8px;font-family:Montserrat,sans-serif;font-weight:800;font-size:clamp(24px,3vw,32px);line-height:1.15;letter-spacing:-0.01em;text-align:center;text-wrap:balance}
+.sub{margin:0 auto 28px;max-width:560px;text-align:center;color:var(--muted)}
+section{padding:clamp(36px,5vw,56px) 0}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.step{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;padding:20px;border:1px solid var(--line);border-radius:16px;background:rgba(10,58,63,0.45)}
+.num{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--cyan);color:var(--bg);font-family:Montserrat,sans-serif;font-weight:800;font-size:18px}
+.step h3{margin:6px 0 4px;font-family:Montserrat,sans-serif;font-weight:800;font-size:18px}
+.step p{margin:0;color:var(--muted)}
+.step strong{color:var(--text)}
+.cta{text-align:center;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 30px;border-radius:999px;background:var(--green);color:var(--bg2);font-weight:800;font-size:17px;text-decoration:none;box-shadow:0 10px 30px rgba(52,227,155,0.25)}
+.btn:hover{filter:brightness(1.06)}
+.note{margin:12px 0 0;font-size:14px;color:var(--muted)}
+.card{padding:clamp(22px,3vw,32px);border-radius:20px;border:1px solid var(--line);background:linear-gradient(160deg,rgba(26,151,165,0.18),rgba(10,58,63,0.35))}
+.card h3{margin:0 0 6px;font-family:Montserrat,sans-serif;font-weight:800;font-size:20px}
+.card p{margin:0;color:var(--muted)}
+.grid2{display:grid;gap:14px}
+@media (min-width:720px){.grid2{grid-template-columns:1fr 1fr}}
+.tag{display:inline-block;margin-bottom:10px;padding:3px 10px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;background:rgba(37,213,233,0.14);color:var(--cyan)}
+.tag.red{background:rgba(255,59,48,0.16);color:#FF6B61}
+details{border-bottom:1px solid var(--line)}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:60px;padding:14px 0;font-weight:600;font-size:17px}
+summary::-webkit-details-marker{display:none}
+summary svg{flex:none;transition:transform .2s}
+details[open] summary svg{transform:rotate(180deg)}
+details p{margin:0 0 18px;color:var(--muted)}
+.help{text-align:center}
+.help a.mail{font-weight:700;font-size:18px;word-break:break-word}
+footer{border-top:1px solid var(--line);padding:28px 20px 44px;text-align:center;font-size:13px;color:rgba(255,255,255,0.6)}
+footer p{margin:6px 0}
+footer a{color:rgba(255,255,255,0.75)}
+@media (prefers-reduced-motion:no-preference){.rise{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}.rise2{animation:rise .7s .12s cubic-bezier(.2,.7,.2,1) both}@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <img src="assets/logo-r.png" alt="" style="height:34px">
+  <img src="assets/logo-reality-club.png" alt="Reality Club" style="height:17px">
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div class="ok rise" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#34E39B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <p class="pill rise">Compra confirmada</p>
+      <h1 class="rise">Bienvenido a <em>Reality Club</em></h1>
+      <p class="lead rise2">Ya eres parte del club. En unos minutos vas a estar adentro, haciendo tu primer video con IA que no parece IA. Sigue estos 3 pasos para entrar.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2>Cómo entrar al programa</h2>
+      <p class="sub">Todo el contenido está en Hotmart, la plataforma donde hiciste el pago.</p>
+      <ol class="steps">
+        <li class="step">
+          <span class="num">1</span>
+          <div>
+            <h3>Revisa tu correo</h3>
+            <p>Hotmart te envió un correo de <strong>compra aprobada</strong> con el acceso, al mismo correo que usaste para pagar. Puede tardar unos minutos. Si no lo ves, busca en <strong>spam</strong> o en <strong>promociones</strong>.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="num">2</span>
+          <div>
+            <h3>Crea tu contraseña</h3>
+            <p>Si es tu primera vez en Hotmart, abre el botón del correo y crea tu contraseña. Entra siempre con <strong>el mismo correo de la compra</strong>.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="num">3</span>
+          <div>
+            <h3>Empieza por el Módulo 1</h3>
+            <p>Entra a Reality Club desde la web o desde la app de Hotmart y empieza por el <strong>Módulo 1 · Onboarding</strong>. Ahí te mostramos el camino para hacer tu primer video.</p>
+          </div>
+        </li>
+      </ol>
+      <div class="cta">
+        <a class="btn" href="https://consumer.hotmart.com" target="_blank" rel="noopener">Ir a mis compras en Hotmart
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <p class="note">Si no has creado tu contraseña, hazlo primero desde el correo de Hotmart.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap grid2">
+      <div class="card">
+        <span class="tag">Tu compra</span>
+        <h3>Reality Club</h3>
+        <p>9 módulos, 6 agentes de IA, la biblioteca de 96 prompts y el Club de Socios. Acceso de por vida.</p>
+      </div>
+      <div class="card">
+        <span class="tag red">Si lo agregaste</span>
+        <h3>El Botón Rojo</h3>
+        <p>Lo encuentras en la misma cuenta de Hotmart, con el mismo correo. Llega en un correo aparte de compra aprobada.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Preguntas frecuentes</h2>
+      <p class="sub">Lo que más nos preguntan después de comprar.</p>
+      <details>
+        <summary>No me llegó el correo de Hotmart<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <p>Espera unos 10 minutos y revisa spam y promociones. Si pagaste en efectivo o por transferencia, el acceso llega cuando el pago se aprueba. Si después de eso no lo encuentras, escríbenos.</p>
+      </details>
+      <details>
+        <summary>Entro a Hotmart y no veo el curso<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <p>Casi siempre es porque entraste con otro correo. Cierra sesión y entra con el correo que usaste para pagar.</p>
+      </details>
+      <details>
+        <summary>¿Puedo verlo desde el celular?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <p>Sí. Descarga la app de Hotmart, entra con el correo de tu compra y ahí encuentras Reality Club.</p>
+      </details>
+      <details>
+        <summary>¿Cómo funciona la garantía?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <p>Tienes 7 días desde la compra. Si el programa no es para ti, pides el reembolso desde tus compras en Hotmart y te devuelven el dinero.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="help" style="padding-top:8px">
+    <div class="wrap">
+      <h2>¿Necesitas ayuda?</h2>
+      <p class="sub" style="margin-bottom:12px">Escríbenos con el correo de tu compra y te ayudamos a entrar.</p>
+      <a class="mail" href="mailto:realityclub.co@gmail.com?subject=Acceso%20a%20Reality%20Club">realityclub.co@gmail.com</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Libana Mar SAS · NIT 901588763-3</p>
+  <p><a href="terminos.html">Términos y condiciones</a> · <a href="privacidad.html">Política de datos</a> · <a href="terminos.html#pqr">Peticiones, quejas y reclamos</a></p>
+</footer>
+
+</body>
+</html>

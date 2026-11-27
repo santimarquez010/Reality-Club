@@ -198,12 +198,12 @@ body.is-over .live{display:none !important}
         <span class="tag">VENDE LO QUE SEA</span>
       </div>
       <p class="kicker live">Oferta única · Solo en esta página</p>
-      <h1 class="live">Entiendo que 47 USD no era para ti hoy. Te dejo El Botón Rojo a <span class="hl" style="white-space:nowrap">37 USD</span>.</h1>
+      <h1 class="live">Solo en esta página, entra a El Botón Rojo por <span class="hl" style="white-space:nowrap">37 USD</span>. Quiero que te vaya bien, y esta es la mejor manera.</h1>
       <p class="lead live">Tu acceso a Reality Club ya va camino a tu correo. Antes de entrar, te doy <strong>una última oportunidad</strong>: el programa de Meta Ads de Dani, completo, por <strong>10 USD menos</strong>. Este precio <strong>no existe en ningún otro lugar</strong>, y si sales de esta página, no vuelve.</p>
 
       <div class="timer live" aria-live="off">
         <p>Esta oferta se cierra en:</p>
-        <div class="clock"><span><b id="mm">15</b><small>min</small></span><i>:</i><span><b id="ss">00</b><small>seg</small></span></div>
+        <div class="clock"><span><b id="mm">10</b><small>min</small></span><i>:</i><span><b id="ss">00</b><small>seg</small></span></div>
       </div>
     </section>
 
@@ -252,13 +252,13 @@ body.is-over .live{display:none !important}
         <span class="carrow" aria-hidden="true">→</span>
         <div class="cbox on"><span class="ck">Socio con El Botón Rojo</span><span class="cp">70%</span><span class="cv">≈ 33 USD por venta</span></div>
       </div>
-      <p class="lead">Son <strong>10 USD más en cada venta</strong>. Con solo <strong>2 ventas</strong> ya recuperaste los 37 USD, y te sobra plata.</p>
+      <p class="lead">Son <strong>10 USD más en cada venta</strong>. Con solo <strong>2 ventas</strong> ya recuperaste los 37 USD, y te sobra dinero.</p>
     </section>
 
     <section class="live">
       <div class="card">
         <h2>¿Por qué te lo dejo más barato?</h2>
-        <p>Porque en Reality Club vas a aprender a hacer anuncios que venden, pero <strong>un anuncio guardado en tu computador no vende nada</strong>. Si le das al botón azul de promocionar de Instagram, lo más probable es que pierdas plata mostrándole tu anuncio a quien nunca te va a comprar.</p>
+        <p>Porque en Reality Club vas a aprender a hacer anuncios que venden, pero <strong>un anuncio guardado en tu computador no vende nada</strong>. Si le das al botón azul de promocionar de Instagram, lo más probable es que pierdas dinero mostrándole tu anuncio a quien nunca te va a comprar.</p>
         <p>No quiero que te pase eso. Prefiero que entres hoy y aprendas a pautar con Dani, que lleva <strong>más de 4 millones de dólares invertidos en anuncios</strong>. Con el <strong>Club de Socios de Reality Club</strong>, 3 ventas al día te dan <strong>2.000 USD al mes</strong>.</p>
         <p>Este precio <strong>no está en el video, ni en los anuncios, ni te va a llegar por correo</strong>. Existe solo en esta página, y solo mientras la tengas abierta.</p>
       </div>
@@ -287,7 +287,7 @@ body.is-over .live{display:none !important}
 
     <section class="live">
       <h2>Es ahora o a <span class="hl">67 USD</span></h2>
-      <p class="lead">Tienes dos caminos. Cerrar esta página, aprender a pautar solo pagando cada error con tu plata y seguir ganando el 50%. O tomar el camino corto, <strong>ganar el 70% de cada venta</strong> y pagar 30 USD menos que cualquiera que entre después.</p>
+      <p class="lead">Tienes dos caminos. Cerrar esta página, aprender a pautar solo pagando cada error con tu dinero y seguir ganando el 50%. O tomar el camino corto, <strong>ganar el 70% de cada venta</strong> y pagar 30 USD menos que cualquiera que entre después.</p>
       <div class="cta-box">
         <a class="btn" href="#oferta" data-checkout>Sí, quiero El Botón Rojo a 37 USD</a>
         <p class="secure">🔒 Pago seguro con Hotmart · Acceso inmediato</p>
@@ -313,15 +313,15 @@ body.is-over .live{display:none !important}
 </div>
 
 <div class="bar live" id="bar">
-  <div class="t"><b>37 USD</b><small>Se cierra en <span id="bt">15:00</span></small></div>
+  <div class="t"><b>37 USD</b><small>Se cierra en <span id="bt">10:00</span></small></div>
   <a class="btn" href="#oferta" data-checkout>Quiero mi Botón Rojo</a>
 </div>
 
 <script>
-// Cuenta regresiva de 15 minutos por visitante. Se guarda en el navegador:
+// Cuenta regresiva de 10 minutos por visitante. Se guarda en el navegador:
 // si recarga la página no se reinicia, y al llegar a cero la oferta se cierra de verdad.
 (function(){
-  var KEY="br37-fin", MIN=15, fin;
+  var KEY="br37-fin", MIN=10, fin;
   try{fin=parseInt(localStorage.getItem(KEY),10)}catch(e){}
   if(!fin){fin=Date.now()+MIN*60000;try{localStorage.setItem(KEY,fin)}catch(e){}}
   var mm=document.getElementById("mm"),ss=document.getElementById("ss"),bt=document.getElementById("bt");
