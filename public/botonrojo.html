@@ -69,6 +69,10 @@ a{color:inherit}
 .below strong{color:#111111;font-weight:800}
 .below strong.hl{color:#D90A0A}
 
+/* Botones de compra de Hotmart (widget de embudo) */
+.hm-wrap{width:100%;max-width:640px}
+#hotmart-sales-funnel{width:100%;min-height:60px}
+
 /* Pie */
 .foot{position:relative;z-index:1;padding:40px 16px 48px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;border-top:1px solid rgba(0,0,0,0.08);background:rgba(255,255,255,0.6)}
 .foot .logo .name{font-size:20px}
@@ -109,6 +113,19 @@ a{color:inherit}
     </div>
 
     <p class="below">Aprende a vender lo que sea con <strong class="hl">El Botón Rojo</strong> y sácale provecho al <strong>Club de Socios de Reality Club</strong>. Con 3 ventas al día, te haces <strong class="hl">2.000 USD al mes</strong>.</p>
+
+    <div class="hm-wrap" id="comprar">
+      <!-- HOTMART - Sales Funnel Widget -->
+      <!--- sales funnel container --->
+      <div id="hotmart-sales-funnel"></div>
+
+      <!--- script load and setup --->
+      <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+      <script>
+      checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+      </script>
+      <!-- HOTMART - Sales Funnel Widget -->
+    </div>
   </main>
 
   <footer class="foot">
