@@ -127,11 +127,6 @@ h2{font-size:clamp(26px,3.6vw,40px);max-width:760px}
 #hotmart-sales-funnel{width:100%;min-height:60px}
 
 /* Oferta vencida */
-.expired{display:none;width:100%;max-width:760px;padding:28px;border-radius:22px;background:#111111;color:#FFFFFF}
-.expired h2{color:#FFFFFF;margin-bottom:8px}
-.expired p{margin:0;font-size:17px;color:rgba(255,255,255,0.8)}
-body.is-over .expired{display:block}
-body.is-over .live{display:none !important}
 
 /* Barra fija en celular */
 .bar{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;justify-content:center;align-items:center;gap:12px;padding:10px max(12px,calc(50% - 300px)) calc(10px + env(safe-area-inset-bottom));background:rgba(17,17,17,0.96);color:#FFFFFF;box-shadow:0 -8px 30px rgba(0,0,0,0.25);transform:translateY(110%);transition:transform .25s ease}
@@ -305,10 +300,6 @@ body.is-over .live{display:none !important}
       </div>
     </section>
 
-    <div class="expired" role="status">
-      <h2>Esta oferta ya terminó</h2>
-      <p>El precio de 37 USD era solo para esta visita. El Botón Rojo vuelve a su precio de 67 USD. Tu acceso a Reality Club ya está en tu correo.</p>
-    </div>
   </main>
 
   <footer class="foot">
@@ -329,18 +320,17 @@ body.is-over .live{display:none !important}
 
 <script>
 // Cuenta regresiva de 10 minutos por visitante. Se guarda en el navegador:
-// si recarga la página no se reinicia, y al llegar a cero la oferta se cierra de verdad.
+// si recarga la página no se reinicia. Al llegar a cero se queda en 00:00 y la oferta sigue disponible.
 (function(){
   var KEY="br37-fin", MIN=10, fin;
   try{fin=parseInt(localStorage.getItem(KEY),10)}catch(e){}
   if(!fin){fin=Date.now()+MIN*60000;try{localStorage.setItem(KEY,fin)}catch(e){}}
   var mm=document.getElementById("mm"),ss=document.getElementById("ss"),bt=document.getElementById("bt");
-  function cerrar(){document.body.classList.add("is-over");try{localStorage.setItem(KEY,1)}catch(e){}}
   function tick(){
     var r=Math.max(0,fin-Date.now()),m=Math.floor(r/60000),s=Math.floor(r%60000/1000);
     var M=String(m).padStart(2,"0"),S=String(s).padStart(2,"0");
     mm.textContent=M;ss.textContent=S;bt.textContent=M+":"+S;
-    if(r<=0){cerrar();return}
+    if(r<=0)return;
     setTimeout(tick,1000-(Date.now()%1000));
   }
   tick();

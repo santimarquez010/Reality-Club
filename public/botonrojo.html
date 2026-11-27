@@ -69,9 +69,79 @@ a{color:inherit}
 .below strong{color:#111111;font-weight:800}
 .below strong.hl{color:#D90A0A}
 
-/* Botones de compra de Hotmart (widget de embudo) */
-.hm-wrap{width:100%;max-width:640px}
+/* Mini página de ventas debajo del video */
+html{scroll-behavior:smooth}
+.sales{width:100%;display:flex;flex-direction:column;align-items:center;gap:clamp(40px,6vw,72px);margin-top:clamp(8px,2vw,24px)}
+.sales section{width:100%;display:flex;flex-direction:column;align-items:center;gap:20px}
+.sales h2{margin:0;font-family:Montserrat,sans-serif;font-weight:900;letter-spacing:-0.02em;line-height:1.1;text-wrap:balance;font-size:clamp(26px,3.6vw,40px);max-width:760px}
+.lead{margin:0;max-width:720px;font-size:clamp(17px,2vw,21px);line-height:1.5;color:rgba(17,17,17,0.82);text-wrap:pretty}
+.lead strong{color:#111111;font-weight:800}
+
+/* Botón de compra */
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:64px;padding:14px 26px;border-radius:16px;background:linear-gradient(180deg,#FF2A2A,#E30613 55%,#B80000);color:#FFFFFF;font-family:Montserrat,sans-serif;font-weight:900;font-size:clamp(17px,2vw,20px);letter-spacing:0.01em;text-decoration:none;text-align:center;box-shadow:0 6px 0 #7A0000,0 18px 36px rgba(227,6,19,0.35);transition:transform .12s ease,box-shadow .12s ease;animation:nudge 2.6s ease-in-out infinite}
+.btn:hover{transform:translateY(2px);box-shadow:0 4px 0 #7A0000,0 12px 26px rgba(227,6,19,0.35)}
+.btn:active{transform:translateY(6px);box-shadow:0 0 0 #7A0000,0 6px 16px rgba(227,6,19,0.3)}
+@keyframes nudge{0%,88%,100%{transform:none}92%{transform:scale(1.025)}96%{transform:scale(0.99)}}
+.btn-main{max-width:560px}
+.secure{margin:0;font-size:13px;color:rgba(17,17,17,0.55);text-align:center}
+
+/* Módulos */
+.mods{width:100%;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.mod{display:flex;flex-direction:column;gap:10px;padding:10px 10px 16px;border-radius:18px;background:#FFFFFF;box-shadow:0 10px 30px rgba(0,0,0,0.07);text-align:left}
+.mod img{display:block;width:100%;height:auto;aspect-ratio:432/624;border-radius:12px}
+.mod p{margin:0 4px;font-size:14px;line-height:1.45;color:rgba(17,17,17,0.75)}
+
+/* Comisión 50% vs 70% */
+.comm{display:flex;align-items:center;justify-content:center;gap:16px;width:100%;max-width:720px}
+.cbox{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;padding:22px 16px;border-radius:20px;background:#FFFFFF;box-shadow:0 10px 30px rgba(0,0,0,0.07)}
+.cbox .ck{font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(17,17,17,0.55)}
+.cbox .cp{font-family:Montserrat,sans-serif;font-weight:900;font-size:clamp(48px,6vw,64px);line-height:1;color:rgba(17,17,17,0.35)}
+.cbox .cv{font-weight:700;font-size:16px;color:rgba(17,17,17,0.6)}
+.cbox.on{background:#111111;box-shadow:0 0 0 4px #E30613,0 20px 44px rgba(227,6,19,0.28)}
+.cbox.on .ck{color:rgba(255,255,255,0.7)}
+.cbox.on .cp{color:#FF2A2A}
+.cbox.on .cv{color:#FFFFFF}
+.carrow{font-family:Montserrat,sans-serif;font-weight:900;font-size:34px;color:#E30613}
+
+/* Bloques de texto */
+.card{width:100%;max-width:760px;padding:clamp(22px,4vw,36px);border-radius:22px;background:#FFFFFF;box-shadow:0 10px 30px rgba(0,0,0,0.07);text-align:left;display:flex;flex-direction:column;gap:14px}
+.card p{margin:0;font-size:17px;line-height:1.6;color:rgba(17,17,17,0.82)}
+.card strong{color:#111111}
+.card.guar{flex-direction:row;gap:24px;align-items:center}
+.seal{flex:none;display:block;width:150px;height:auto;filter:drop-shadow(0 10px 18px rgba(0,0,0,0.22))}
+
+/* Tarjeta de la oferta */
+.offer{width:100%;max-width:880px;display:grid;grid-template-columns:1fr 1.1fr;align-items:center;gap:clamp(20px,4vw,48px);padding:clamp(22px,4vw,44px);border-radius:28px;background:#FFFFFF;border:2px solid #E30613;box-shadow:0 0 0 8px rgba(227,6,19,0.07),0 30px 70px rgba(80,0,0,0.16);text-align:left}
+.offer .caja{display:block;width:100%;max-width:360px;height:auto;margin:0 auto}
+.offer-body{display:flex;flex-direction:column;gap:16px}
+.offer-body h3{margin:0;font-family:Montserrat,sans-serif;font-weight:900;font-size:clamp(22px,2.6vw,28px);line-height:1.15}
+.save{align-self:flex-start;margin:0;padding:4px 12px;border-radius:999px;background:#F5B800;color:#111111;font-weight:800;font-size:13px;letter-spacing:0.04em;text-transform:uppercase}
+.incl{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;text-align:left}
+.incl li{position:relative;padding-left:28px;font-size:15.5px;line-height:1.45;color:rgba(17,17,17,0.85)}
+.incl li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border-radius:50%;background:#E30613 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/12px no-repeat}
+.prices{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.prices li{display:flex;justify-content:space-between;gap:12px;font-size:16px;color:rgba(17,17,17,0.6)}
+.prices li s{font-weight:700;text-decoration-color:#E30613;text-decoration-thickness:2px}
+.price-now{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding-top:10px;border-top:1px dashed rgba(0,0,0,0.15)}
+.price-now .amt{font-family:Montserrat,sans-serif;font-weight:900;font-size:clamp(56px,7vw,76px);line-height:1;letter-spacing:-0.03em;color:#E30613}
+.price-now .note{font-size:15px;font-weight:600;color:rgba(17,17,17,0.65)}
+
+/* Recuadro con los botones de compra de Hotmart (widget de embudo) */
+.hm-box{width:100%;max-width:560px;display:flex;flex-direction:column;gap:12px;scroll-margin-top:24px;padding:clamp(20px,4vw,32px);border-radius:24px;background:#FFFFFF;border:2px solid #E30613;box-shadow:0 0 0 8px rgba(227,6,19,0.07),0 24px 60px rgba(80,0,0,0.14)}
+.hm-title{margin:0;font-family:Montserrat,sans-serif;font-weight:900;font-size:clamp(20px,2.4vw,26px);line-height:1.2}
 #hotmart-sales-funnel{width:100%;min-height:60px}
+
+@media (max-width:860px){
+.mods{grid-template-columns:repeat(2,1fr)}
+.mods .mod:last-child{grid-column:1 / -1;flex-direction:row;align-items:center}
+.mods .mod:last-child img{width:42%;flex:none}
+}
+@media (max-width:699px){
+.offer{grid-template-columns:1fr;text-align:center}
+.offer .caja{max-width:300px}
+.save{align-self:center}
+.price-now{justify-content:center}
+}
 
 /* Pie */
 .foot{position:relative;z-index:1;padding:40px 16px 48px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;border-top:1px solid rgba(0,0,0,0.08);background:rgba(255,255,255,0.6)}
@@ -84,6 +154,17 @@ a{color:inherit}
 
 .br-m{display:none}
 @media (max-width:599px){
+.mods{grid-template-columns:1fr;gap:10px}
+.mod,.mods .mod:last-child{flex-direction:row;align-items:center;gap:14px}
+.mod img,.mods .mod:last-child img{width:30%;flex:none}
+.mod p{font-size:15px}
+.comm{gap:8px}
+.cbox{padding:18px 8px}
+.carrow{font-size:24px}
+.card.guar{flex-direction:column;text-align:center}
+.seal{width:130px}
+.hm-box{padding:18px 6px 14px;border-radius:18px}
+.hm-title{padding:0 10px}
 
 .vsl-play{width:64px;height:64px}
 .vsl-play svg{width:24px;height:24px}
@@ -114,17 +195,91 @@ a{color:inherit}
 
     <p class="below">Aprende a vender lo que sea con <strong class="hl">El Botón Rojo</strong> y sácale provecho al <strong>Club de Socios de Reality Club</strong>. Con 3 ventas al día, te haces <strong class="hl">2.000 USD al mes</strong>.</p>
 
-    <div class="hm-wrap" id="comprar">
-      <!-- HOTMART - Sales Funnel Widget -->
-      <!--- sales funnel container --->
-      <div id="hotmart-sales-funnel"></div>
+    <a class="btn btn-main" href="#comprar">Quiero entrar a El Botón Rojo</a>
 
-      <!--- script load and setup --->
-      <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
-      <script>
-      checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
-      </script>
-      <!-- HOTMART - Sales Funnel Widget -->
+    <div class="sales">
+      <section>
+        <h2>Pasas del <span class="hl">50%</span> al <span class="hl">70%</span> de comisión</h2>
+        <p class="lead">Los socios de Reality Club que tienen El Botón Rojo ganan más por cada venta. Te pagamos más porque un socio que sabe pautar vende mucho más.</p>
+        <div class="comm">
+          <div class="cbox"><span class="ck">Socio sin El Botón Rojo</span><span class="cp">50%</span><span class="cv">≈ 23 USD por venta</span></div>
+          <span class="carrow" aria-hidden="true">→</span>
+          <div class="cbox on"><span class="ck">Socio con El Botón Rojo</span><span class="cp">70%</span><span class="cv">≈ 33 USD por venta</span></div>
+        </div>
+        <p class="lead">Son <strong>10 USD más en cada venta</strong>. Con solo <strong>2 ventas</strong> ya recuperaste lo que pagaste, y te sobra dinero.</p>
+      </section>
+
+      <section>
+        <h2>Esto es lo que te llevas con <span class="hl">El Botón Rojo</span></h2>
+        <div class="mods">
+          <div class="mod"><img src="assets/br-mod-meta.jpg" width="432" height="624" alt="Bases de Meta Ads" loading="lazy"><p>Los fundamentos para que Meta trabaje por ti y le muestre tu anuncio a quien sí va a comprar.</p></div>
+          <div class="mod"><img src="assets/br-mod-socio.jpg" width="432" height="624" alt="Modo socio" loading="lazy"><p>Pauta tus anuncios de Reality Club y gana tu comisión de socio por cada venta.</p></div>
+          <div class="mod"><img src="assets/br-mod-digitales.jpg" width="432" height="624" alt="Productos digitales" loading="lazy"><p>Vende un ebook, un curso o cualquier producto digital con anuncios.</p></div>
+          <div class="mod"><img src="assets/br-mod-fisicos.jpg" width="432" height="624" alt="Productos físicos" loading="lazy"><p>Vende productos físicos, como una crema para el acné, directo desde el anuncio.</p></div>
+          <div class="mod"><img src="assets/br-mod-servicios.jpg" width="432" height="624" alt="Servicios para negocios" loading="lazy"><p>Maneja la publicidad de negocios que te pagan por traerles clientes.</p></div>
+        </div>
+        <p class="lead">Todo con el <strong>Método BOTÓN</strong>, 5 pasos en orden: <strong class="hl">B</strong>ase, <strong class="hl">O</strong>ferta, <strong class="hl">T</strong>ráfico, <strong class="hl">O</strong>ptimizar y <strong class="hl">N</strong>ivel siguiente. Aunque nunca hayas pautado ni un dólar.</p>
+      </section>
+
+      <section>
+        <div class="card">
+          <h2>Un anuncio que nadie ve no vende nada</h2>
+          <p>En Reality Club vas a aprender a hacer anuncios que venden, pero <strong>un anuncio guardado en tu computador no le vende a nadie</strong>. Si le das al botón azul de promocionar de Instagram, lo más probable es que pierdas dinero mostrándole tu anuncio a quien nunca te va a comprar.</p>
+          <p>Oprimir el botón rojo es hacer la publicidad directamente desde Meta y decirle exactamente a quién mostrarle tu anuncio: a las personas que de verdad necesitan lo que vendes.</p>
+          <p>Te enseña Dani, un trafficker que vive de manejar publicidad y lleva <strong>más de 4 millones de dólares invertidos en anuncios</strong>. No es un gurú que vive de vender cursos: te enseña lo que hace todos los días, despacio y con palabras que entiendes.</p>
+        </div>
+      </section>
+
+      <section>
+        <div class="offer">
+          <img class="caja" src="assets/br-caja.webp" width="633" height="720" alt="Caja de El Botón Rojo: vende lo que sea" loading="lazy">
+          <div class="offer-body">
+            <p class="save">30% de descuento</p>
+            <h3>El Botón Rojo: el programa completo de Meta Ads de Dani</h3>
+            <ul class="incl">
+              <li>El programa completo de Meta Ads con el Método BOTÓN</li>
+              <li>Modo socio: <strong>70% de comisión</strong> en lugar del 50%</li>
+              <li>Gratis: El Semáforo, que te dice qué anuncio sirve y cuál no</li>
+              <li>Gratis: la Calculadora de resultados</li>
+              <li>Gratis: prompts para dejar tu Facebook e Instagram listos para pautar</li>
+            </ul>
+            <ul class="prices">
+              <li><span>Precio normal</span><s>67 USD</s></li>
+            </ul>
+            <div class="price-now"><span class="amt">47 USD</span><span class="note">Solo en esta página · Pago único</span></div>
+            <a class="btn" href="#comprar">Quiero entrar a El Botón Rojo</a>
+            <p class="secure">🔒 Pago seguro con Hotmart · Acceso inmediato</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="card guar">
+          <img class="seal" src="assets/16232da9c9de6f819c0187356140f6d2.webp" width="590" height="640" alt="Sello de garantía de 7 días" loading="lazy">
+          <div>
+            <h2 style="font-size:clamp(22px,2.8vw,30px);margin-bottom:8px">Entra sin riesgo</h2>
+            <p>Igual que en Reality Club, tienes <strong>7 días de garantía</strong>. Te alcanzan para ver las clases y montar tu primera campaña. Si en esos 7 días sientes que no es para ti, pides tu dinero y te lo devuelven completo.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Si sales de esta página, El Botón Rojo cuesta <span class="hl" style="white-space:nowrap">67 USD</span></h2>
+        <div class="hm-box" id="comprar">
+          <p class="hm-title">Entra a El Botón Rojo por <span class="hl" style="white-space:nowrap">47 USD</span></p>
+          <!-- HOTMART - Sales Funnel Widget -->
+          <!--- sales funnel container --->
+          <div id="hotmart-sales-funnel"></div>
+
+          <!--- script load and setup --->
+          <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+          <script>
+          checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+          </script>
+          <!-- HOTMART - Sales Funnel Widget -->
+          <p class="secure">🔒 Pago seguro con Hotmart · Acceso inmediato</p>
+        </div>
+      </section>
     </div>
   </main>
 
