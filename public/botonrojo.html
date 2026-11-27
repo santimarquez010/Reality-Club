@@ -48,7 +48,7 @@ a{color:inherit}
 .logo .tag{margin-top:7px;font-size:10px;font-weight:500;letter-spacing:0.42em;color:#222222;padding-left:0.42em}
 
 /* Recuadro del video */
-.vsl{position:relative;width:100%;aspect-ratio:auto;border-radius:20px;overflow:hidden;background:#F3F1F2;border:1px solid rgba(227,6,19,0.55);box-shadow:0 0 0 6px rgba(227,6,19,0.08),0 0 60px rgba(227,6,19,0.22),0 30px 60px rgba(0,0,0,0.28)}
+.vsl{position:relative;width:100%;background:transparent}
 .vsl > iframe,.vsl > video,.vsl > div:not(.vsl-ph){position:absolute;inset:0;width:100%;height:100%;border:0}
 .vsl-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:radial-gradient(circle at 50% 45%,#3A0B0B 0%,#000 75%);color:rgba(255,255,255,0.6);font-size:14px}
 .vsl-play{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 40% 32%,#FF3B3B,#E30613 55%,#A80000);color:#FFFFFF;box-shadow:0 0 0 10px rgba(227,6,19,0.2),0 0 40px rgba(227,6,19,0.6);animation:pulse 2.4s ease-in-out infinite}
@@ -70,7 +70,7 @@ a{color:inherit}
 
 .br-m{display:none}
 @media (max-width:599px){
-.vsl{border-radius:14px}
+
 .vsl-play{width:64px;height:64px}
 .vsl-play svg{width:24px;height:24px}
 .logo .name{font-size:26px}
