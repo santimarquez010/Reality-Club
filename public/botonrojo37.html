@@ -122,8 +122,9 @@ h2{font-size:clamp(26px,3.6vw,40px);max-width:760px}
 .seal{flex:none;display:block;width:150px;height:auto;filter:drop-shadow(0 10px 18px rgba(0,0,0,0.22))}
 
 .cta-box{width:100%;max-width:560px;display:flex;flex-direction:column;gap:12px}
-.no{margin-top:4px;background:none;border:0;padding:6px;font:inherit;font-size:14px;color:rgba(17,17,17,0.5);text-decoration:underline;cursor:pointer}
-.no:hover{color:#111111}
+.hm-box{scroll-margin-top:24px;padding:clamp(20px,4vw,32px);border-radius:24px;background:#FFFFFF;border:2px solid #E30613;box-shadow:0 0 0 8px rgba(227,6,19,0.07),0 24px 60px rgba(80,0,0,0.14)}
+.hm-title{margin:0;font-family:Montserrat,sans-serif;font-weight:900;font-size:clamp(20px,2.4vw,26px);line-height:1.2}
+#hotmart-sales-funnel{width:100%;min-height:60px}
 
 /* Oferta vencida */
 .expired{display:none;width:100%;max-width:760px;padding:28px;border-radius:22px;background:#111111;color:#FFFFFF}
@@ -133,7 +134,7 @@ body.is-over .expired{display:block}
 body.is-over .live{display:none !important}
 
 /* Barra fija en celular */
-.bar{position:fixed;left:0;right:0;bottom:0;z-index:5;display:none;align-items:center;gap:12px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(17,17,17,0.96);color:#FFFFFF;box-shadow:0 -8px 30px rgba(0,0,0,0.25);transform:translateY(110%);transition:transform .25s ease}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;justify-content:center;align-items:center;gap:12px;padding:10px max(12px,calc(50% - 300px)) calc(10px + env(safe-area-inset-bottom));background:rgba(17,17,17,0.96);color:#FFFFFF;box-shadow:0 -8px 30px rgba(0,0,0,0.25);transform:translateY(110%);transition:transform .25s ease}
 .bar.show{transform:none}
 .bar .t{display:flex;flex-direction:column;line-height:1.15}
 .bar .t b{font-family:Montserrat,sans-serif;font-weight:900;font-size:22px;color:#FF3B3B}
@@ -141,7 +142,7 @@ body.is-over .live{display:none !important}
 .bar .btn{flex:1;width:auto;min-height:50px;font-size:15px;padding:10px 14px;box-shadow:0 4px 0 #7A0000;animation:none}
 
 /* Pie */
-.foot{position:relative;z-index:1;padding:40px 16px 48px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;border-top:1px solid rgba(0,0,0,0.08);background:rgba(255,255,255,0.6)}
+.foot{position:relative;z-index:1;padding:40px 16px 110px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;border-top:1px solid rgba(0,0,0,0.08);background:rgba(255,255,255,0.6)}
 .foot .logo .name{font-size:20px}
 .foot .logo .el{font-size:11px}
 .foot p{margin:0;font-size:12.5px;color:rgba(0,0,0,0.55)}
@@ -160,8 +161,7 @@ body.is-over .live{display:none !important}
 .offer img{max-width:320px;margin:0 auto}
 .save{align-self:center}
 .price-now{justify-content:center}
-.bar{display:flex}
-.foot{padding-bottom:110px}
+
 }
 @media (max-width:599px){
 .logo .name{font-size:26px}
@@ -170,6 +170,8 @@ body.is-over .live{display:none !important}
 .ceja .at{margin-right:3px;padding:1px 5px;border-radius:5px;letter-spacing:0.02em}
 .br-m{display:inline}
 .clock span{min-width:68px;font-size:32px}
+.hm-box{padding:18px 6px 14px;border-radius:18px}
+.hm-title{padding:0 10px}
 .kicker{font-size:11px;letter-spacing:0.05em;white-space:nowrap}
 .mods{grid-template-columns:1fr;gap:10px}
 .mod,.mods .mod:last-child{flex-direction:row;align-items:center;gap:14px}
@@ -225,8 +227,7 @@ body.is-over .live{display:none !important}
             <li><span>Precio con descuento</span><s>47 USD</s></li>
           </ul>
           <div class="price-now"><span class="amt">37 USD</span><span class="note">Pago único · Acceso inmediato</span></div>
-          <!-- CHECKOUT: pega aquí el enlace de Hotmart de la oferta de 37 USD (en los 3 botones con data-checkout) -->
-          <a class="btn" href="#oferta" data-checkout>Sí, quiero El Botón Rojo a 37 USD</a>
+          <a class="btn" href="#comprar">Sí, quiero El Botón Rojo a 37 USD</a>
           <p class="secure">🔒 Pago seguro con Hotmart</p>
         </div>
       </div>
@@ -288,10 +289,19 @@ body.is-over .live{display:none !important}
     <section class="live">
       <h2>Es ahora o a <span class="hl">67 USD</span></h2>
       <p class="lead">Tienes dos caminos. Cerrar esta página, aprender a pautar solo pagando cada error con tu dinero y seguir ganando el 50%. O tomar el camino corto, <strong>ganar el 70% de cada venta</strong> y pagar 30 USD menos que cualquiera que entre después.</p>
-      <div class="cta-box">
-        <a class="btn" href="#oferta" data-checkout>Sí, quiero El Botón Rojo a 37 USD</a>
+      <div class="cta-box hm-box" id="comprar">
+        <p class="hm-title">Entra a El Botón Rojo por <span class="hl">37 USD</span></p>
+        <!-- HOTMART - Sales Funnel Widget -->
+        <!--- sales funnel container --->
+        <div id="hotmart-sales-funnel"></div>
+
+        <!--- script load and setup --->
+        <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+        <script>
+        checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+        </script>
+        <!-- HOTMART - Sales Funnel Widget -->
         <p class="secure">🔒 Pago seguro con Hotmart · Acceso inmediato</p>
-        <button class="no" type="button" id="no">No, gracias. Prefiero entrar a Reality Club sin El Botón Rojo.</button>
       </div>
     </section>
 
@@ -314,7 +324,7 @@ body.is-over .live{display:none !important}
 
 <div class="bar live" id="bar">
   <div class="t"><b>37 USD</b><small>Se cierra en <span id="bt">10:00</span></small></div>
-  <a class="btn" href="#oferta" data-checkout>Quiero mi Botón Rojo</a>
+  <a class="btn" href="#comprar">Quiero mi Botón Rojo</a>
 </div>
 
 <script>
@@ -334,10 +344,10 @@ body.is-over .live{display:none !important}
     setTimeout(tick,1000-(Date.now()%1000));
   }
   tick();
-  document.getElementById("no").addEventListener("click",function(){cerrar();window.scrollTo(0,0)});
-  // Barra fija en celular: aparece cuando la tarjeta de la oferta sale de la pantalla
-  var bar=document.getElementById("bar"),card=document.querySelector(".offer");
-  if("IntersectionObserver" in window&&card){new IntersectionObserver(function(e){bar.classList.toggle("show",!e[0].isIntersecting&&e[0].boundingClientRect.top<0)}).observe(card)}
+  // Botón flotante: acompaña toda la página y se esconde cuando los botones de Hotmart están a la vista
+  var bar=document.getElementById("bar"),box=document.getElementById("comprar");
+  bar.classList.add("show");
+  if("IntersectionObserver" in window&&box){new IntersectionObserver(function(e){bar.classList.toggle("show",!e[0].isIntersecting)}).observe(box)}
 })();
 </script>
 <script src="https://cerebrocentro.vercel.app/rastreo.js" defer></script>

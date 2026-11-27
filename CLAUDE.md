@@ -11,7 +11,7 @@ Sitio HTML estático (sin build) en `public/`. Se publica en Cloudflare Workers 
 | `pv-socio.html` | `/pv-socio` | Copia de `index.html` para los socios. **Generada, no editar** |
 | `video-socio.html` | `/video-socio` | Copia de `video.html` para los socios. **Generada, no editar** |
 | `botonrojo.html` | `/botonrojo` | VSL de El Botón Rojo (colores rojo/blanco del empaque, favicon `assets/botonrojo-*`, sin píxel de Meta por ahora) |
-| `botonrojo37.html` | `/botonrojo37` | Downsell de El Botón Rojo a 37 USD (normal 67, VSL 47). `noindex`, cuenta regresiva de 10 min por visitante en `localStorage` (`br37-fin`); al vencer o al tocar "No, gracias" se oculta la oferta. Botones de compra con `data-checkout` |
+| `botonrojo37.html` | `/botonrojo37` | Downsell de El Botón Rojo a 37 USD (normal 67, VSL 47). `noindex`, cuenta regresiva de 10 min por visitante en `localStorage` (`br37-fin`); al vencer se oculta la oferta. La compra va en el widget de embudo de Hotmart (`#hotmart-sales-funnel`, dentro de `#comprar`), que trae sus propios botones de aceptar y rechazar; el botón de la tarjeta y el botón flotante llevan a `#comprar` |
 | `gracias.html` | `/gracias` | Página de gracias al final del embudo (después de Reality Club y El Botón Rojo). `noindex`, píxel de Meta solo con `PageView` (la compra la marca Hotmart), botón a `consumer.hotmart.com` |
 | `bibliotecadeprompts.html` | `/bibliotecadeprompts` | Para compradores, `noindex`, sin enlaces desde la página de ventas |
 | `terminos.html`, `privacidad.html` | `/terminos`, `/privacidad` | Páginas legales |
